@@ -1,0 +1,85 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;; Nouns
+
+狗 := common_noun-noun-lex &
+  [ STEM < "狗" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_狗_n_rel" ].
+
+貓 := common_noun-noun-lex &
+  [ STEM < "貓" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_貓_n_rel" ].
+
+佢 := pronoun-noun-lex &
+  [ STEM < "佢" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_佢_n_rel" ].
+
+巧華 := proper_name-noun-lex &
+  [ STEM < "巧華" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_巧華_n_rel" ].
+
+乜嘢 := interrogative_pronoun-noun-lex &
+  [ STEM < "乜嘢" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_乜嘢_n_rel" ].
+
+邊個 := interrogative_pronoun-noun-lex &
+  [ STEM < "邊個" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_邊個_n_rel" ].
+
+細佬 := kin_noun-noun-lex &
+  [ STEM < "細佬" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_細佬_n_rel" ].
+
+;;; Adjectives
+
+;;; Verbs
+
+死 := simple_intransitive-verb-lex &
+  [ STEM < "死" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_死_v_rel" ].
+
+吠 := simple_intransitive-verb-lex &
+  [ STEM < "吠" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_吠_v_rel" ].
+
+跌 := simple_intransitive-verb-lex &
+  [ STEM < "跌" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_跌_v_rel" ].
+
+鍾意 := simple_transitive-verb-lex &
+  [ STEM < "鍾意" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_鍾意_v_rel" ].
+
+踢 := simple_transitive-verb-lex &
+  [ STEM < "踢" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_踢_v_rel" ].
+
+發現 := strict_transitive-verb-lex &
+  [ STEM < "發現" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_發現_v_rel" ].
+
+係 := copula-verb-lex &
+  [ STEM < "係" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_係_v_rel" ].
+
+;;; Determiners
+
+呢 := demonstrative-determiner-lex &
+  [ STEM < "呢" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_呢_q_rel" ].
+
+嗰 := demonstrative-determiner-lex &
+  [ STEM < "嗰" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_嗰_q_rel" ].
+
+;;; Adverbs
+
+嗎 := q-particle1-lex &
+  [ STEM < "嗎" > ].
+
+possessor-adp-1 := possessor-adp-lex-1 &
+  [ STEM < "嘅" > ].
+
+同 := conj-lex &
+  [ STEM < "同" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
+    CFORM "1" ].

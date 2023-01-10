@@ -1,0 +1,168 @@
+
+version=34
+
+section=general
+language=Cantonese
+iso-code=yue
+punctuation-chars=keep-all
+archive=yes
+email=neosome@gmail.com
+affiliation=Palacky University Olomouc
+motivation=education
+vcs=git
+
+section=word-order
+word-order=svo
+has-dets=yes
+noun-det-order=det-noun
+has-aux=no
+aux-comp-order=before
+aux-comp=vp
+multiple-aux=no
+subord-word-order=same
+
+section=number
+
+section=person
+person=1-2-3
+first-person=none
+
+section=gender
+
+section=case
+case-marking=none
+
+section=adnom-poss
+  poss-strat1_order=head-final
+  poss-strat1_mod-spec=mod
+  poss-strat1_mark-loc=possessor
+  poss-strat1_pronoun-allow=yes
+  poss-strat1_possessor-type=non-affix
+  poss-strat1_possessor-mark-order=head-final
+  poss-strat1_possessor-agr=non-agree
+  poss-strat1_possessor-orth=嘅
+  poss-strat2_order=head-final
+  poss-strat2_mod-spec=spec
+  poss-strat2_mark-loc=neither
+  poss-strat2_pronoun-allow=yes
+
+section=direct-inverse
+
+section=tense-aspect-mood
+
+section=evidentials
+
+section=other-features
+
+section=sentential-negation
+neg-exp=1
+neg-mod=v
+neg-order=before
+neg-adv-orth=唔
+
+section=coordination
+  cs1_np=on
+  cs1_vp=on
+  cs1_pat=mono
+  cs1_mark=word
+  cs1_orth=同
+  cs1_order=before
+
+section=matrix-yes-no
+q-part=on
+q-part-order=after
+  q-particle1_orth=嗎
+  q-particle1_main=on
+  q-particle1_wh=imp
+
+section=wh-q
+front-matrix=in-situ
+
+section=info-str
+
+section=arg-opt
+subj-drop=subj-drop-all
+subj-mark-drop=subj-mark-drop-not
+subj-mark-no-drop=subj-mark-no-drop-not
+subj-con=subj-con-always
+obj-drop=obj-drop-lex
+obj-mark-drop=obj-mark-drop-not
+obj-mark-no-drop=obj-mark-no-drop-not
+
+section=nominalclause
+
+section=clausal-comp
+
+section=clausalmods
+
+section=lexicon
+  noun1_name=common_noun
+  noun1_det=opt
+    noun1_stem1_orth=狗
+    noun1_stem1_pred=_狗_n_rel
+    noun1_stem2_orth=貓
+    noun1_stem2_pred=_貓_n_rel
+  noun2_name=pronoun
+  noun2_pron=on
+  noun2_det=imp
+    noun2_stem1_orth=佢
+    noun2_stem1_pred=_佢_n_rel
+  noun3_name=proper_name
+  noun3_det=opt
+    noun3_stem1_orth=巧華
+    noun3_stem1_pred=_巧華_n_rel
+  noun4_name=interrogative_pronoun
+  noun4_inter=on
+  noun4_det=imp
+    noun4_stem1_orth=乜嘢
+    noun4_stem1_pred=_乜嘢_n_rel
+    noun4_stem2_orth=邊個
+    noun4_stem2_pred=_邊個_n_rel
+  noun5_name=kin_noun
+  noun5_supertypes=noun1
+  noun5_det=opt
+    noun5_stem1_orth=細佬
+    noun5_stem1_pred=_細佬_n_rel
+  verb1_name=simple_intransitive
+  verb1_valence=intrans
+    verb1_stem1_orth=死
+    verb1_stem1_pred=_死_v_rel
+    verb1_stem2_orth=吠
+    verb1_stem2_pred=_吠_v_rel
+    verb1_stem3_orth=跌
+    verb1_stem3_pred=_跌_v_rel
+  verb2_name=simple_transitive
+    verb2_feat1_name=OPT
+    verb2_feat1_value=plus
+    verb2_feat1_head=obj
+  verb2_valence=trans
+    verb2_stem1_orth=鍾意
+    verb2_stem1_pred=_鍾意_v_rel
+    verb2_stem2_orth=踢
+    verb2_stem2_pred=_踢_v_rel
+  verb3_name=strict_transitive
+    verb3_feat1_name=OPT
+    verb3_feat1_value=minus
+    verb3_feat1_head=obj
+  verb3_valence=trans
+    verb3_stem1_orth=發現
+    verb3_stem1_pred=_發現_v_rel
+  verb4_name=copula
+  verb4_supertypes=verb2
+    verb4_stem1_orth=係
+    verb4_stem1_pred=_係_v_rel
+  det1_name=demonstrative
+    det1_stem1_orth=呢
+    det1_stem1_pred=_呢_q_rel
+    det1_stem2_orth=嗰
+    det1_stem2_pred=_嗰_q_rel
+
+section=morphology
+
+section=toolbox-import
+
+section=test-sentences
+
+section=gen-options
+
+section=ToolboxLexicon
