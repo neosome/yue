@@ -244,6 +244,10 @@ two-rel-adposition-lex := basic-icons-lex-item & non-local-none-lex-item &
                           [ ARG2 #ind ] ] ].
 
 possessor-adp-lex-1 := two-rel-adposition-lex &
+"""
+This is the possesive marker, it takes a complement on the left (the possesor) and modies the possessee on the right.
+<ex> 我 嘅 朋友 鍾意 大笨象 
+"""
   [ SYNSEM.LOCAL [ CAT [ POSTHEAD -,
                          VAL [ SPEC < >,
                                SUBJ < >,
