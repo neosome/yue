@@ -232,7 +232,7 @@ demonstrative-determiner-lex := determiner-lex & no-icons-lex-item &
 
 ;;; Adverbs
 
-two-rel-adposition-lex := basic-icons-lex-item &
+two-rel-adposition-lex := basic-icons-lex-item & non-local-none-lex-item &
   [ SYNSEM [ LOCAL [ CAT [ HEAD adp,
                            VAL.COMPS < [ LOCAL [ CAT cat-sat,
                                                  CONT.HOOK #hook &
