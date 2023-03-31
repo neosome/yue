@@ -286,20 +286,20 @@ basic-adposition-lex :+ [ SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR nonpossessive,
 ;Constraint on MC used to be part of matrix.tdl
 ;;it applies to all wo implementations, except for v2
 
-; The head of head-comp-phrase can't be: ['comp']
+; The head of head-comp-phrase can't be: ['comp' or 'adp']
 
 head-comp-phrase := basic-head-1st-comp-phrase & head-initial &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT +,
-    SYNSEM.LOCAL.CAT.HEAD +nvjrpdmo ].
+    SYNSEM.LOCAL.CAT.HEAD +nvjrdmo ].
 
 subj-head-phrase := decl-head-subj-phrase & head-final &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 
-; comp-head-phrase requires things that are [ HEAD comp ].
+; comp-head-phrase requires things that are [ HEAD comp or adp ].
 
 comp-head-phrase := basic-head-1st-comp-phrase & head-final &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT -,
-    SYNSEM.LOCAL.CAT.HEAD comp ].
+    SYNSEM.LOCAL.CAT.HEAD +pc ].
 
 possessum-mod-rule := basic-head-mod-phrase-simple &
   [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.MOD.FIRST.LOCAL.CAT.POSSESSUM #poss,
