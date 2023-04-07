@@ -1,9 +1,5 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
-;;; Nouns
-
-
-
-
+;;; wh-Nouns
 
 
 乜嘢 := interrogative_pronoun-noun-lex &
@@ -15,11 +11,7 @@
     SYNSEM.LKEYS.KEYREL.PRED "_邊個_n_rel" ].
 
 
-
-;;; Adjectives
-
 ;;; Verbs
-
 
 
 發現 := strict_transitive-verb-lex &
@@ -38,12 +30,15 @@
 possessor-adp-1 := possessor-adp-lex-1 &
   [ STEM < "嘅" > ].
 
+;;; Conjunctions
+
 同 := conj-lex &
   [ STEM < "同" >,
     SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
     CFORM "1" ].
     
     ;;; -*- Mode: TDL; Coding: utf-8 -*-
+
 ;;; Nouns
 
 狗 := common_noun-noun-lex &
@@ -113,7 +108,12 @@ gau2 := common_noun-noun-lex &
 細路 := common_noun-noun-lex &
   [ STEM < "細路" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細路_n_rel" ].  
-     
+
+細路仔 := common_noun-noun-lex &
+  [ STEM < "細路仔" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_細路仔_n_rel" ].  
+
+
 警察 := common_noun-noun-lex &
   [ STEM < "警察" >,
     SYNSEM.LKEYS.KEYREL.PRED "_警察_n_rel" ].  
@@ -212,6 +212,10 @@ sei2 := simple_intransitive-verb-lex &
 暈 := simple_intransitive-verb-lex &
   [ STEM < "暈" >,
     SYNSEM.LKEYS.KEYREL.PRED "_暈_v_rel" ].    
+
+笑 := simple_intransitive-verb-lex &
+  [ STEM < "笑" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_笑_v_rel" ].    
 
 吠 := simple_intransitive-verb-lex &
   [ STEM < "吠" >,
