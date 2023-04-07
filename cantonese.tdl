@@ -148,7 +148,6 @@ head-spec-phrase := basic-head-spec-phrase & head-final &
 common_noun-noun-lex := noun-lex &
 [ SYNSEM.LOCAL.CAT.HEAD common ].
 
-
 pronoun-noun-lex := no-spr-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD.PRON + ].
 
@@ -159,7 +158,7 @@ proper_name-noun-lex := noun-lex &
 interrogative_pronoun-noun-lex := wh-pronoun-noun-lex.
 
 kin_noun-noun-lex := noun-lex & 
- [ SYNSEM.LOCAL.CAT.HEAD kin].
+ [ SYNSEM.LOCAL.CAT.HEAD kin ].
 
 ;;; Verbs
 
@@ -324,13 +323,29 @@ possessum-mod-rule := basic-head-mod-phrase-simple &
 
 adj-head-int-phrase :+ possessum-mod-rule.
 
-poss-phrase-2 := head-final & binary-nonloc-phrase &
-  [ NON-HEAD-DTR.SYNSEM.LOCAL [ CAT [ POSSESSUM nonpossessive,
+poss-phrase-2 := head-final & binary-nonloc-phrase & 
+"""
+The rule takes two nouns, both are not 'specified'. The left-hand daughter
+must be a word; the right-hand daughter must be a kin, both will be made definite.
+
+<ex> 明恩 細妹 笑
+<ex> 我 細佬 鍾意 大笨象
+<ex> 我 老師 笑      
+
+<nex> 明恩 我 笑
+<nex> 我 嘅 朋友 細妹 笑
+
+to-do: currently, the righ-head daughter must be kin, but we should allow role nouns, like 老師.
+"""
+  [ NON-HEAD-DTR word & [SYNSEM.LOCAL [ CAT [ POSSESSUM nonpossessive,
                                       HEAD noun &
                                            [ POSSESSOR nonpossessive ],
-                                      VAL.SPR < > ],
-                                CONT.HOOK.INDEX #possessor ],
-    SYNSEM.LOCAL.CAT [ HEAD #head,
+                                      VAL.SPR < unexpressed &
+                                              [ LOCAL.CAT.HEAD +nd,
+                                                OPT + ] > ],
+                                CONT.HOOK [ LTOP #possessor_lbl,
+                                            INDEX #possessor ] ] ],
+    SYNSEM.LOCAL.CAT [ HEAD kin  & #head,
                        VAL [ COMPS < >,
                              SUBJ < >,
                              SPEC < >,
@@ -341,7 +356,7 @@ poss-phrase-2 := head-final & binary-nonloc-phrase &
                                          PRON - ],
                                   VAL.SPR < [ ] > ],
                             CONT.HOOK #hook &
-                                      [ LTOP #lbl,
+                                      [ LTOP #possessum_lbl,
                                         INDEX #possessum &
                                               [ COG-ST uniq-id ] ] ],
     C-CONT [ HOOK #hook &
@@ -353,12 +368,19 @@ poss-phrase-2 := head-final & binary-nonloc-phrase &
                            ARG1 #possessum,
                            ARG2 #possessor ],
                          quant-relation &
-                         [ PRED "exist_q_rel",
+                         [ PRED "def_q_rel",
                            ARG0 #possessum,
-                           RSTR #harg ] >,
+                           RSTR #possessum_harg ], 
+                         quant-relation &
+                         [ PRED "def_q_rel",
+                           ARG0 #possessor,
+                           RSTR #possessor_harg ] >,
              HCONS.LIST < qeq &
-                          [ HARG #harg,
-                            LARG #lbl ] > ] ].
+                          [ HARG #possessor_harg,
+                            LARG #possessor_lbl ], 
+                          qeq &
+                          [ HARG #possessum_harg,
+                            LARG #possessum_lbl ] > ] ].
 
 ;Constraint on MC used to be part of matrix.tdl
 ;;it applies to all wo implementations, except for v2
