@@ -92,6 +92,14 @@ possessive-2 := possessive.  ; supertype for strategy 2
 possessor-2 := possessor & possessive-2.
 possessum-2 := possessum & possessive-2.
 
+;;; sub-part-of-speech: 
+
+common := noun. 
+kin := noun.
+proper :=noun.
+
+
+
 ;;;;;;;;;;;;;;;;;;;
 ;;; Lexical Types
 ;;;;;;;;;;;;;;;;;;;
@@ -137,16 +145,21 @@ no-spr-noun-lex := noun-lex &
 head-spec-phrase := basic-head-spec-phrase & head-final &
   [ NON-HEAD-DTR.SYNSEM.OPT - ].
 
-common_noun-noun-lex := noun-lex.
+common_noun-noun-lex := noun-lex &
+[ SYNSEM.LOCAL.CAT.HEAD common ].
+
 
 pronoun-noun-lex := no-spr-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD.PRON + ].
 
-proper_name-noun-lex := noun-lex.
+proper_name-noun-lex := noun-lex &
+[ SYNSEM.LOCAL.CAT.HEAD proper].
+
 
 interrogative_pronoun-noun-lex := wh-pronoun-noun-lex.
 
-kin_noun-noun-lex := common_noun-noun-lex.
+kin_noun-noun-lex := noun-lex & 
+ [ SYNSEM.LOCAL.CAT.HEAD kin].
 
 ;;; Verbs
 
@@ -245,7 +258,7 @@ two-rel-adposition-lex := basic-icons-lex-item & non-local-none-lex-item &
 
 possessor-adp-lex-1 := two-rel-adposition-lex &
 """
-This is the possesive marker, it takes a complement on the left (the possesor) and modies the possessee on the right.
+This is the possesive marker, it takes a complement on the left (the possesor: ARG2) and modifies the possessee (ARG1) on the right.
 <ex> 我 嘅 朋友 鍾意 大笨象 
 """
   [ SYNSEM.LOCAL [ CAT [ POSTHEAD -,
@@ -266,7 +279,7 @@ This is the possesive marker, it takes a complement on the left (the possesor) a
                    CONT [ ICONS.LIST < >,
                           HCONS.LIST < >,
                           RELS.LIST < arg12-ev-relation &
-                                      [ PRED "poss_rel",
+                                      [ PRED "poss_p_rel",
                                         LBL #lbl,
                                         ARG1 #possessum,
                                         ARG2 #possessor ] > ] ] ].
@@ -311,7 +324,7 @@ possessum-mod-rule := basic-head-mod-phrase-simple &
 
 adj-head-int-phrase :+ possessum-mod-rule.
 
-poss-phrase-2 := head-final &
+poss-phrase-2 := head-final & binary-nonloc-phrase &
   [ NON-HEAD-DTR.SYNSEM.LOCAL [ CAT [ POSSESSUM nonpossessive,
                                       HEAD noun &
                                            [ POSSESSOR nonpossessive ],
@@ -335,7 +348,7 @@ poss-phrase-2 := head-final &
                   [ INDEX #possessum ],
              ICONS.LIST < >,
              RELS.LIST < arg12-ev-relation &
-                         [ PRED "poss_rel",
+                         [ PRED "poss_p_rel",
                            LBL #lbl,
                            ARG1 #possessum,
                            ARG2 #possessor ],
