@@ -52,108 +52,112 @@ possessor-adp-1 := possessor-adp-lex-1 &
 
 ;;; Nouns
 
-狗 := common_noun-noun-lex &
+狗 := common-noun-lex &
   [ STEM < "狗" >,
     SYNSEM.LKEYS.KEYREL.PRED "_狗_n_rel" ].
 
-gau2 := common_noun-noun-lex &
+gau2 := common-noun-lex &
   [ STEM < "gaau2" >,
     SYNSEM.LKEYS.KEYREL.PRED "_狗_n_rel" ].
 
-貓 := common_noun-noun-lex &
+貓 := common-noun-lex &
   [ STEM < "貓" >,
     SYNSEM.LKEYS.KEYREL.PRED "_貓_n_rel" ].
     
-牛 := common_noun-noun-lex &
+牛 := common-noun-lex &
   [ STEM < "牛" >,
     SYNSEM.LKEYS.KEYREL.PRED "_牛_n_rel" ].
     
-羊 := common_noun-noun-lex &
+羊 := common-noun-lex &
   [ STEM < "羊" >,
     SYNSEM.LKEYS.KEYREL.PRED "_羊_n_rel" ].
 
-熊 := common_noun-noun-lex &
+熊 := common-noun-lex &
   [ STEM < "熊" >,
     SYNSEM.LKEYS.KEYREL.PRED "_熊_n_rel" ].   
     
-馬 := common_noun-noun-lex &
+馬 := common-noun-lex &
   [ STEM < "馬" >,
     SYNSEM.LKEYS.KEYREL.PRED "_馬_n_rel" ].  
       
-馬騮 := common_noun-noun-lex &
+馬騮 := common-noun-lex &
   [ STEM < "馬騮" >,
     SYNSEM.LKEYS.KEYREL.PRED "_馬騮_n_rel" ].   
  
-獅子 := common_noun-noun-lex &
+獅子 := common-noun-lex &
   [ STEM < "獅子" >,
     SYNSEM.LKEYS.KEYREL.PRED "_獅子_n_rel" ].
 
-老虎 := common_noun-noun-lex &
+老虎 := common-noun-lex &
   [ STEM < "老虎" >,
     SYNSEM.LKEYS.KEYREL.PRED "_老虎_n_rel" ].   
     
-大笨象 := common_noun-noun-lex &
+大笨象 := common-noun-lex &
   [ STEM < "大笨象" >,
     SYNSEM.LKEYS.KEYREL.PRED "_大笨象_n_rel" ].  
     
-老鼠 := common_noun-noun-lex &
+老鼠 := common-noun-lex &
   [ STEM < "老鼠" >,
     SYNSEM.LKEYS.KEYREL.PRED "_老鼠_n_rel" ].  
     
-白鴿 := common_noun-noun-lex &
+白鴿 := common-noun-lex &
   [ STEM < "白鴿" >,
     SYNSEM.LKEYS.KEYREL.PRED "_白鴿_n_rel" ]. 
     
-蛇 := common_noun-noun-lex &
+蛇 := common-noun-lex &
   [ STEM < "蛇" >,
     SYNSEM.LKEYS.KEYREL.PRED "_蛇_n_rel" ].  
     
-龜 := common_noun-noun-lex &
+龜 := common-noun-lex &
   [ STEM < "龜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_龜_n_rel" ].  
     
-波 := common_noun-noun-lex &
+波 := common-noun-lex &
   [ STEM < "波" >,
     SYNSEM.LKEYS.KEYREL.PRED "_波_n_rel" ]. 
 
-細路 := common_noun-noun-lex &
+細路 := common-noun-lex &
   [ STEM < "細路" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細路_n_rel" ].  
 
-細路仔 := common_noun-noun-lex &
+細路仔 := common-noun-lex &
   [ STEM < "細路仔" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細路仔_n_rel" ].  
 
 
-警察 := common_noun-noun-lex &
+警察 := common-noun-lex &
   [ STEM < "警察" >,
     SYNSEM.LKEYS.KEYREL.PRED "_警察_n_rel" ].  
     
-護士 := common_noun-noun-lex &
+護士 := common-noun-lex &
   [ STEM < "護士" >,
     SYNSEM.LKEYS.KEYREL.PRED "_護士_n_rel" ].  
     
-經理 := common_noun-noun-lex &
+經理 := role-noun-lex &
   [ STEM < "經理" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_經理_n_rel" ].  
+    SYNSEM.LKEYS.KEYREL.PRED "_經理_n_rel" ]. 
+
+老師 := role-noun-lex &
+  [ STEM < "老師" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_老師_n_rel" ]. 
    
-人 := common_noun-noun-lex &
+人 := common-noun-lex &
   [ STEM < "人" >,
     SYNSEM.LKEYS.KEYREL.PRED "_人_n_rel" ].  
     
-餸 := common_noun-noun-lex &
+餸 := common-noun-lex &
   [ STEM < "餸" >,
     SYNSEM.LKEYS.KEYREL.PRED "_餸_n_rel" ].  
     
-菜 := common_noun-noun-lex &
+菜 := common-noun-lex &
   [ STEM < "菜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_菜_n_rel" ].  
     
-薯仔 := common_noun-noun-lex &
+薯仔 := common-noun-lex &
   [ STEM < "薯仔" >,
     SYNSEM.LKEYS.KEYREL.PRED "_薯仔_n_rel" ]. 
     
-朋友 := common_noun-noun-lex &
+朋友 := role-noun-lex &
   [ STEM < "朋友" >,
     SYNSEM.LKEYS.KEYREL.PRED "_朋友_n_rel" ].  
     
@@ -184,31 +188,31 @@ gau2 := common_noun-noun-lex &
   [ STEM < "人哋" >,
     SYNSEM.LKEYS.KEYREL.PRED "_人哋_n_rel" ].       
     
-巧華 := proper_name-noun-lex &
+巧華 := proper-noun-lex &
   [ STEM < "巧華" >,
     SYNSEM.LKEYS.KEYREL.PRED "_巧華_n_rel" ].
 
-明恩 := proper_name-noun-lex &
+明恩 := proper-noun-lex &
   [ STEM < "明恩" >,
     SYNSEM.LKEYS.KEYREL.PRED "_明恩_n_rel" ].  
     
-細妹 := kin_noun-noun-lex &
+細妹 := kin-noun-lex &
   [ STEM < "細妹" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細妹_n_rel" ].
 
-大佬 := kin_noun-noun-lex &
+大佬 := kin-noun-lex &
   [ STEM < "大佬" >,
     SYNSEM.LKEYS.KEYREL.PRED "_大佬_n_rel" ].
     
-家姐 := kin_noun-noun-lex &
+家姐 := kin-noun-lex &
   [ STEM < "家姐" >,
     SYNSEM.LKEYS.KEYREL.PRED "_家姐_n_rel" ].
     
-細佬 := kin_noun-noun-lex &
+細佬 := kin-noun-lex &
   [ STEM < "細佬" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細佬_n_rel" ]. 
 
-老豆 := kin_noun-noun-lex &
+老豆 := kin-noun-lex &
   [ STEM < "老豆" >,
     SYNSEM.LKEYS.KEYREL.PRED "_老豆_n_rel" ].
     

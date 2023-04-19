@@ -95,8 +95,12 @@ possessum-2 := possessum & possessive-2.
 ;;; sub-part-of-speech: 
 
 common := noun. 
-kin := noun.
 proper :=noun.
+kin-or-role :=noun. 
+
+kin := kin-or-role.
+role := kin-or-role. 
+
 
 
 
@@ -145,20 +149,24 @@ no-spr-noun-lex := noun-lex &
 head-spec-phrase := basic-head-spec-phrase & head-final &
   [ NON-HEAD-DTR.SYNSEM.OPT - ].
 
-common_noun-noun-lex := noun-lex &
+common-noun-lex := noun-lex &
 [ SYNSEM.LOCAL.CAT.HEAD common ].
 
 pronoun-noun-lex := no-spr-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD.PRON + ].
 
-proper_name-noun-lex := noun-lex &
+proper-noun-lex := noun-lex &
 [ SYNSEM.LOCAL.CAT.HEAD proper].
 
 
 interrogative_pronoun-noun-lex := wh-pronoun-noun-lex.
 
-kin_noun-noun-lex := noun-lex & 
+kin-noun-lex := noun-lex & 
  [ SYNSEM.LOCAL.CAT.HEAD kin ].
+ 
+role-noun-lex :=noun-lex &
+ [ SYNSEM.LOCAL.CAT.HEAD role ].
+
 
 ;;; Verbs
 
@@ -345,7 +353,7 @@ to-do: currently, the righ-head daughter must be kin, but we should allow role n
                                                 OPT + ] > ],
                                 CONT.HOOK [ LTOP #possessor_lbl,
                                             INDEX #possessor ] ] ],
-    SYNSEM.LOCAL.CAT [ HEAD kin  & #head,
+    SYNSEM.LOCAL.CAT [ HEAD kin-or-role  & #head,
                        VAL [ COMPS < >,
                              SUBJ < >,
                              SPEC < >,
