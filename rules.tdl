@@ -30,3 +30,5 @@ vp1-mid-coord := vp1-mid-coord-rule.
 vp1-bottom-coord := vp1-bottom-coord-rule.
 
 in-situ-ques := insitu-int-cl.
+
+mod-head-scop := adj-head-scop-phrase.

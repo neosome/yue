@@ -24,6 +24,11 @@
 
 ;;; Adverbs
 
+唔 := neg-adv-lex & 
+  [ STEM < "唔" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_唔_x_rel" ].
+  
+
 嗎 := q-particle1-lex &
   [ STEM < "嗎" > ].
 
@@ -36,6 +41,12 @@ possessor-adp-1 := possessor-adp-lex-1 &
   [ STEM < "同" >,
     SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
     CFORM "1" ].
+
+同埋 := conj-lex &
+  [ STEM < "同埋" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
+    CFORM "1" ].
+    
     
     ;;; -*- Mode: TDL; Coding: utf-8 -*-
 
@@ -137,6 +148,10 @@ gau2 := common_noun-noun-lex &
 菜 := common_noun-noun-lex &
   [ STEM < "菜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_菜_n_rel" ].  
+    
+薯仔 := common_noun-noun-lex &
+  [ STEM < "薯仔" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_薯仔_n_rel" ]. 
     
 朋友 := common_noun-noun-lex &
   [ STEM < "朋友" >,
@@ -280,10 +295,8 @@ sei2 := simple_intransitive-verb-lex &
   [ STEM < "嗰" >,
     SYNSEM.LKEYS.KEYREL.PRED "_嗰_q_rel" ].
 
-;;; coordinators
+
 
     
-同埋 := conj-lex &
-  [ STEM < "同埋" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
-    CFORM "1" ].
+
+

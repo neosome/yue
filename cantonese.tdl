@@ -438,3 +438,59 @@ insitu-int-cl := interrogative-clause & head-only &
              LOCAL.CAT [ VAL #val,
                          MC bool,
                          WH.BOOL + ] ] ].
+                         
+                         
+;; Type for negative adverbs.
+
+;; SSH 2015-01-26: Why is [ MC + ] needed?
+;; ZZF 2016-11-4: negation adverb also modifies adj，and it's scopal modifier, not SPR (therefore SPEC < >). Only degree adverbs are specifiers.
+;; ZZF 2016-12-8: taking out "LIGHT +," from MOD, to allow "不 常 来", "不 太 喜欢"
+neg-adv-lex := basic-scopal-adv-lex & non-local-none-lex-item &
+"""
+Tentatively we are setting the MOD's COMP value to empty (< >) to avoid ambiguity on the level of attachment. 
+
+FIXME:
+For educational purposes, we want to block 不 before degree specifiers (e.g., 他 不 很 高 。). 
+But it is not clear whether this is problematic in casual speech -- we might not want to block it altogether.
+We experimented with setting the SPR to  <[ ]> (a list of length one) to make 不 select the adjective before the degree specifier. But this does not work:
+Verbs come with empty specifiers (SPR < >). Adjectives come looking for a optional single specifier (SPR <[ ]>) that is their degree specifier.
+Therefore, we can't use SPR to block the order in which 不 appears.
+
+<ex>??? 他 不 很 高 。
+<ex>他 不 高 。
+<ex>他 很 不 高 。
+<ex>他 很 不 好吃 。
+<ex>你 不 知道 。
+
+
+Let's say: Thre is a  the scopal BU could be used for 1,2,5 and then we could ave a lexical BU
+Lexical BU would be a degree specifier...  and scopal BU does not take degree spc.
+
+EVERYONE NOT HAPPY.  >>> 
+
+If we have a non-scopal that REQUIRES a degree-SPR.  +  a scopal that IS a degree-SPR.
+maybe a specl head-spr rule : the normal rule would be intersective; This would have to ALSO allow to be specified FURTHER 
+the special one would be scopal and allow BU
+
+"""
+  [ SYNSEM.LOCAL.CAT [ VAL [ COMPS < >,
+			     SPEC < > ],
+		       HEAD.MOD < [ LOCAL.CAT [ HEAD +vj,
+						VAL [SUBJ cons,
+						     COMPS < >] ] ] > ] ].
+
+
+;;redefining the types in matrix.tdl. Taken out raise-index-mod-lex-item from basic-adverb-lex and put it in basic-scopal-adverb-lex. 
+basic-adv-lex :=  single-rel-lex-item & basic-icons-lex-item &
+  [ SYNSEM [LOCAL.CAT.HEAD adv,
+	     LKEYS.KEYREL event-relation ]].
+
+;;zzf and fb 2016-11-7  
+;;raise-index-mod-lex-item its HOOK.INDEX is the same as that of the thing it modifies
+;;removing SPR as scopal adverbs don't seem to take degree specifiers.
+basic-scopal-adv-lex := basic-adv-lex & scopal-mod-lex & raise-index-mod-lex-item &
+  [ SYNSEM [ LOCAL.CAT.VAL [ SUBJ < >,
+                             SPR < > ] ] ].
+;;                             SPR < [ LOCAL.CAT [ HEAD adv,
+;;                                                 VAL.SPEC < [ LOCAL.CAT.HEAD adv ] > ] ] ;;> ] ] ].
+
