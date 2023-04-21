@@ -502,3 +502,44 @@ basic-scopal-adv-lex := basic-adv-lex & scopal-mod-lex & raise-index-mod-lex-ite
 ;;                             SPR < [ LOCAL.CAT [ HEAD adv,
 ;;                                                 VAL.SPEC < [ LOCAL.CAT.HEAD adv ] > ] ] ;;> ] ] ].
 
+;;;Adjectives
+
+basic-pred-adj-lex := basic-intersective-adjective-lex & no-hcons-lex-item.
+
+pred-adj-lex := basic-pred-adj-lex &
+"""
+This is the main type for predicative adjectives. In principle, these ought to be able to server as predicates without a degree specifier (e.g. 很) but this construction is marked as comparative/constrastive. E.g.
+她 漂亮。  She is more beautiful.
+
+
+
+ZZF FB LMC 2016-2-24 SPR OPT changed from - to bool to allow adj predicate without specifier (adv) 姑娘　漂亮 ;
+2016-4-20 taking out linking of NON-LOCAL.SLASH with that of its SUBJ
+
+2021.01.27 -- LMC and FCB put back the linking of NON-LOCAL.SLASH with its SUBJ. We need to do a regression test. This was to remove bad analysis with optional subjects in relative clauses of Adjectives.
+"""
+  [ SYNSEM [ LOCAL [ CAT [ HEAD [ MOD <> ],
+			   VAL [ SUBJ < [LOCAL [CAT [HEAD noun, 
+						     VAL.SPR < > ],
+						CONT.HOOK.INDEX #index ],
+					 NON-LOCAL.SLASH  #slash ] >,
+				 COMPS < > ] ] ],
+	     NON-LOCAL.SLASH  #slash,
+	     LKEYS.KEYREL.ARG1 #index ] ].
+
+
+;pred-adj-nospr-lex := pred-adj-lex &
+;  [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < > ] ] ] ] ].
+		      
+pred-adj-optspr-lex := pred-adj-lex &
+  [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < [ LOCAL [ CAT [ HEAD adv,
+						       VAL.SPEC < [ LOCAL.CAT.HEAD adj ] > ] ],
+					 OPT bool ] > ] ] ] ] ].
+
+pred-adj-spr-lex := pred-adj-optspr-lex &
+  [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < [ OPT - ] > ] ] ] ] ].
+
+  
+				   
+
+

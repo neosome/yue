@@ -156,6 +156,15 @@ gau2 := common-noun-lex &
 薯仔 := common-noun-lex &
   [ STEM < "薯仔" >,
     SYNSEM.LKEYS.KEYREL.PRED "_薯仔_n_rel" ]. 
+
+蘋果 := common-noun-lex &
+  [ STEM < "蘋果" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_蘋果_n_rel" ]. 
+
+西瓜 := common-noun-lex &
+  [ STEM < "西瓜" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_西瓜_n_rel" ]. 
+
     
 朋友 := role-noun-lex &
   [ STEM < "朋友" >,
@@ -300,7 +309,10 @@ sei2 := simple_intransitive-verb-lex &
     SYNSEM.LKEYS.KEYREL.PRED "_嗰_q_rel" ].
 
 
+;;; adjectives
 
-    
+肥 := pred-adj-optspr-lex &
+  [ STEM < "肥" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_肥_a_rel" ].
 
 
