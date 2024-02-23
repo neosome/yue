@@ -95,11 +95,14 @@ possessum-2 := possessum & possessive-2.
 ;;; sub-part-of-speech: 
 
 common := noun. 
-proper :=noun.
-kin-or-role :=noun. 
+proper := noun.
+kin-or-role := noun. 
+classifier := head.
+
 
 kin := kin-or-role.
 role := kin-or-role. 
+
 
 
 
@@ -129,7 +132,8 @@ wh-pronoun-noun-lex := basic-wh-word-lex & norm-hook-lex-item & basic-icons-lex-
 noun-lex := basic-noun-lex & basic-non-wh-word-lex & non-local-none-lex-item & no-hcons-lex-item & non-mod-lex-item &
   [ ARG-ST < #spr >,
     SYNSEM.LOCAL.CAT [ VAL [ SPR < #spr &
-                                   [ LOCAL.CAT.HEAD det ] >,
+                                   [ LOCAL.CAT [ HEAD classifier, 
+                                   VAL.SPR <> ] ] >,
                              COMPS < >,
                              SUBJ < >,
                              SPEC < > ],
@@ -146,8 +150,16 @@ no-spr-noun-lex := noun-lex &
 ; Rules for building NPs.  Note that the Matrix uses SPR for
 ; the specifier of nouns and SUBJ for the subject (specifier) of verbs.
 
-head-spec-phrase := basic-head-spec-phrase & head-final &
-  [ NON-HEAD-DTR.SYNSEM.OPT - ].
+;spec-head-phrase := basic-head-spec-phrase-super & head-compositional & head-final &
+
+spec-head-phrase := basic-head-spec-phrase & head-final &
+"""
+The specifier cannot be a classifier; we do this to block the spec-head rule to apply with the numeral-cl as the specifier and N as the head. 
+"""
+  [ NON-HEAD-DTR.SYNSEM [OPT -, 
+                         LOCAL.CAT.HEAD +vjrpcdmo],
+    SYNSEM.LOCAL.CONT.HOOK.XARG #x, 
+    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG #x].
 
 common-noun-lex := noun-lex &
 [ SYNSEM.LOCAL.CAT.HEAD common ].
@@ -166,6 +178,46 @@ kin-noun-lex := noun-lex &
  
 role-noun-lex :=noun-lex &
  [ SYNSEM.LOCAL.CAT.HEAD role ].
+
+;;; Classifier-head rule 
+
+cl-head-phrase-super := binary-nonloc-phrase & phrasal &
+              binary-headed-phrase &
+  [ INFLECTED infl-satisfied,
+    SYNSEM [ LOCAL.CAT [ WH [ OR < #or1, #or2 > ],
+                         VAL [ SUBJ #subj,
+                               COMPS #spcomps,
+                               SPR  < [ LOCAL.CAT.HEAD det ] >,
+                               SPEC #spec ],
+                         POSTHEAD #ph,
+                         HC-LIGHT - ],
+              MODIFIED #modif ],
+    HEAD-DTR [ INFLECTED infl-satisfied,
+               SYNSEM [ LOCAL [ CAT [ WH #or1,
+                                      HEAD #head,
+                                      VAL [ SUBJ #subj,
+                                            COMPS olist & #comps,
+                                            SPR < #synsem >, 
+                                            SPEC #spec ],
+                                      POSTHEAD #ph ],
+                                CONT.HOOK #hdhook & [LTOP #h, INDEX #i ]],
+                        MODIFIED #hmodif ] ],
+    NON-HEAD-DTR.SYNSEM #synsem &
+     [ LOCAL [ CAT [ WH #or2, VAL [ SPR < >,
+                                    SPEC < [ LOCAL [ CAT [ HEAD #head,
+                                                            VAL.COMPS #comps ],
+                                                      CONT.HOOK #hdhook ],
+                                              MODIFIED #hmodif ] > ,
+                                    COMPS #spcomps ] ], 
+              CONT.HOOK [LTOP #h, XARG #i ] ] ,
+       MODIFIED #modif ],
+    C-CONT [ RELS.LIST < >, HCONS.LIST < >, ICONS.LIST < > ] ].
+
+cl-head-phrase := cl-head-phrase-super & head-final &
+  [ NON-HEAD-DTR.SYNSEM [LOCAL [ CAT.HEAD classifier,
+  			         CONT.HOOK #hook ],
+                         OPT - ],
+    C-CONT.HOOK #hook ].
 
 
 ;;; Verbs
@@ -243,12 +295,73 @@ q-particle1-lex := qpart-lex-item &
 
 determiner-lex := basic-determiner-lex & basic-non-wh-word-lex & norm-zero-arg & non-mod-lex-item &
   [ SYNSEM.LOCAL.CAT [ VAL [ SPR < >,
-                             COMPS < >,
+                             COMPS <  >,
                              SUBJ < > ],
                        HEAD.INIT + ] ].
 
 demonstrative-determiner-lex := determiner-lex & no-icons-lex-item &
   [ SYNSEM.L-QUE - ].
+  
+;;; Classifiers
+
+classifier-lex := norm-sem-lex-item & non-local-none-lex-item & non-mod-lex-item & no-hcons-lex-item &
+"""
+<ex> 我 食 一 個 蘋果 。
+<ex> 我 食 呢 一 個 蘋果 。
+""" 
+  [ SYNSEM.LOCAL  [ CAT [ VAL [ SPR < [ LOCAL.CAT.HEAD num ] >,
+                             COMPS < >,
+                             SUBJ < > ],
+                       HEAD classifier & 
+                       [INIT + ] ],
+                    CONT  [ HOOK.XARG #arg,
+                    ICONS.LIST < >,
+                          RELS.LIST < arg1-ev-relation &
+                                      [ ARG1 ref-ind & #arg,
+                                      ] > ] ] ].
+
+
+
+;;; Numerals
+
+card_rel := norm_rel.
+
+carg-relation := arg0-relation &
+  [ CARG string ].
+    
+card-relation := carg-relation & arg1-relation &
+	[ PRED card_rel ]. 
+	
+named-relation := noun-relation & carg-relation &
+  [ PRED named_rel ].
+	
+numeral-super-lex := single-rel-lex-item & basic-icons-lex-item & 
+"""
+This is the main type for basic Numerals.
+They have [HEAD num]. And the special head-feature [CARDINAL +].
+
+Their semantics is somewhat special, using CARG in a similar way as named relations.
+We want: the ARG0 of the think it will specify over (SPEC) to be the same as ARG1 on the relation it introduces.
+ [FIXME]  LOOK WHY USING THIS ONE, THE ARG0 and ARG1 is links
+"""
+  [ SYNSEM [ LOCAL [ CAT [ VAL [ COMPS < >,
+				 SUBJ < >,
+				 SPR < >,
+				 SPEC < [ LOCAL.CONT.HOOK [
+				 LTOP #lbl, INDEX #arg1 ]] > ],
+			   HEAD num & [ MOD < > ] ],
+		     CONT [ HOOK [ LTOP #lbl, 
+				   INDEX #index ],
+			    RELS <! #rel !>,
+			    HCONS <! !> ] ],
+	     LKEYS.KEYREL card-relation & #rel & [ LBL #lbl,
+						   ARG0 #index,
+						   ARG1 #arg1 ] ] ].
+
+numeral-lex :=  numeral-super-lex & non-local-none-lex-item.
+
+;numeral-que-lex = numeral-super-lex & ...   
+; for 幾多
 
 ;;; Adverbs
 
@@ -464,11 +577,11 @@ We experimented with setting the SPR to  <[ ]> (a list of length one) to make �
 Verbs come with empty specifiers (SPR < >). Adjectives come looking for a optional single specifier (SPR <[ ]>) that is their degree specifier.
 Therefore, we can't use SPR to block the order in which 不 appears.
 
-<ex>??? 他 不 很 高 。
-<ex>他 不 高 。
-<ex>他 很 不 高 。
+<ex>??? 他 不 很 高 。/ *佢唔好高。
+<ex>他 不 高 。/ 佢唔高。
+<ex>他 很 不 高 。/* 佢好唔高。
 <ex>他 很 不 好吃 。
-<ex>你 不 知道 。
+<ex>你 不 知道 。/佢唔知道。
 
 
 Let's say: Thre is a  the scopal BU could be used for 1,2,5 and then we could ave a lexical BU

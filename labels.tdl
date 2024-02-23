@@ -53,6 +53,18 @@ np-bottom-label := label &
                              COORD + ],
               LABEL-NAME "NP-B" ].
 
+clp-label := label & 
+            [ SYNSEM.LOCAL [ CAT [ HEAD classifier,
+                                   VAL.SPR < > ],
+                             COORD-STRAT "" ],
+              LABEL-NAME "ClP" ].
+              
+cl-label := label & 
+            [ SYNSEM.LOCAL [ CAT [ HEAD classifier,
+                                   VAL.SPR < [ ] > ],
+                             COORD-STRAT "" ],
+              LABEL-NAME "Cl" ].
+              
 np-label := label & 
             [ SYNSEM.LOCAL [ CAT [ HEAD noun,
                                    VAL.SPR < > ],

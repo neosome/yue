@@ -225,7 +225,6 @@ gau2 := common-noun-lex &
   [ STEM < "老豆" >,
     SYNSEM.LKEYS.KEYREL.PRED "_老豆_n_rel" ].
     
-;;; Adjectives
 
 ;;; Verbs
 
@@ -307,7 +306,19 @@ sei2 := simple_intransitive-verb-lex &
 嗰 := demonstrative-determiner-lex &
   [ STEM < "嗰" >,
     SYNSEM.LKEYS.KEYREL.PRED "_嗰_q_rel" ].
+    
+    
+;;; Numerals 
 
+一 := numeral-lex &
+  [ STEM < "一" >,
+    SYNSEM.LKEYS.KEYREL.CARG "1"].
+
+;;; Classifiers
+
+個 := classifier-lex &
+  [ STEM < "個" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_個_x_rel" ].
 
 ;;; adjectives
 
@@ -315,4 +326,25 @@ sei2 := simple_intransitive-verb-lex &
   [ STEM < "肥" >,
     SYNSEM.LKEYS.KEYREL.PRED "_肥_a_rel" ].
 
+瘦 := pred-adj-optspr-lex &
+  [ STEM < "瘦" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_瘦_a_rel" ].
+      
+靚 := pred-adj-optspr-lex &
+  [ STEM < "靚" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_靚_a_rel" ].
+    
+核凸 := pred-adj-optspr-lex &
+  [ STEM < "核凸" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_核凸_a_rel" ].
+    
+高 := pred-adj-optspr-lex &
+  [ STEM < "高" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_高_a_rel" ].
 
+矮 := pred-adj-optspr-lex &
+  [ STEM < "矮" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_矮_a_rel" ].
+
+
+    

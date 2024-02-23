@@ -31,7 +31,7 @@ diff-list-type            := diff-list.
 
 ;chart-dependencies := .
 
-deleted-daughters := ARGS HEAD-DTR NON-HEAD-DTR DTR.
+deleted-daughters := ARGS HEAD-DTR NON-HEAD-DTR DTR APPEND NEW-LIST END-LIST.
 
 parsing-packing-restrictor := STEM RELS HCONS RNAME.
 

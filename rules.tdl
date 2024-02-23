@@ -13,7 +13,9 @@ adj-head-int := adj-head-int-phrase.
 
 poss-2 := poss-phrase-2.
 
-head-spec := head-spec-phrase.
+spec-head := spec-head-phrase.
+
+cl-head := cl-head-phrase.
 
 bare-np := bare-np-phrase.
 
