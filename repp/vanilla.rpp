@@ -3,7 +3,9 @@
 ;;; to your choices file.
 ;;;
 ;;; 
-:[ \t]
+;; note that we include a fullwidthspace here
+;;
+:[ \t　]
 !^(.+)$								 \1 
 !\t								 
 !  +								 
