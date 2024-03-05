@@ -97,7 +97,9 @@ possessum-2 := possessum & possessive-2.
 common := noun. 
 proper := noun.
 kin-or-role := noun. 
-classifier := head.
+classifier-or-determiner := head.
+classifier := classifier-or-determiner.
+det := classifier-or-determiner. 
 
 
 kin := kin-or-role.
@@ -508,6 +510,32 @@ to-do: currently, the righ-head daughter must be kin, but we should allow role n
 
 ; Bare NP phrase.  Consider modifying the PRED value of the quantifier relation
 ; introduced to match the semantic effect of bare NPs in your language.
+
+basic-bare-np-phrase := head-only & unary-nonloc-phrase &
+  [ SYNSEM [ LOCAL.CAT [ WH #wh,
+                       VAL [ SPR < >,
+                           SUBJ < >,
+                           COMPS < >, SPEC #spec ] ] ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
+                                  HEAD noun,
+                                  VAL [ SPR < unexpressed &
+                                              [ LOCAL.CAT.HEAD classifier-or-determiner,
+                                                OPT + ] >,
+                                        SUBJ < >,
+                                        COMPS < >, SPEC #spec ] ],
+                            CONT.HOOK [ INDEX #index,
+                                        LTOP #larg ] ],
+    C-CONT [ RELS.LIST < quant-relation &
+                     [ ARG0 #index,
+                       RSTR #harg ] >,
+             HCONS.LIST < qeq &
+                      [ HARG #harg,
+                        LARG #larg ] >,
+             ICONS.LIST < >,
+             HOOK [ INDEX #index ] ] ].
+
+
+
 
 bare-np-phrase := basic-bare-np-phrase &
   [ C-CONT.RELS.LIST < [ PRED "exist_q_rel" ] > ].

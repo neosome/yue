@@ -28,12 +28,21 @@ n-bottom-label := label &
                                    VAL.SPR < [ ] > ],
                              COORD + ],
               LABEL-NAME "NP-B" ].
-
-n-label := label & 
-	   [ SYNSEM.LOCAL [ CAT [ HEAD noun,
-                                  VAL.SPR < [ ] > ],
-                            COORD-STRAT "" ],
-             LABEL-NAME "N" ].
+  
+          
+n-label := label &
+            [ SYNSEM.LOCAL [ CAT [ HEAD noun,
+                                   VAL.SPR < [ ] > ],
+                             COORD-STRAT "" ], 
+              LABEL-NAME "N" ].
+          
+ 
+nbar-label := label & 
+           [ SYNSEM.LOCAL [ CAT [ HEAD noun,
+                                 VAL.SPR < [ SYNSEM.LOCAL.CAT.HEAD det ] > ],
+                          COORD-STRAT "" ],
+          LABEL-NAME "Nbar" ]. 
+          
 
 n-top-label := label &
             [ SYNSEM.LOCAL.CAT [ HEAD noun,
