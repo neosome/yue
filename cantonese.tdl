@@ -99,7 +99,7 @@ proper := noun.
 kin-or-role := noun. 
 classifier-or-determiner := head.
 classifier := classifier-or-determiner.
-det := classifier-or-determiner. 
+det := classifier-or-determiner & +do & +dm & +cd & +pd & +rd & +jd & +vd & +nd. 
 
 
 kin := kin-or-role.
@@ -158,7 +158,7 @@ spec-head-phrase := basic-head-spec-phrase & head-final &
 """
 The specifier cannot be a classifier; we do this to block the spec-head rule to apply with the numeral-cl as the specifier and N as the head. 
 """
-  [ NON-HEAD-DTR.SYNSEM [OPT -, 
+  [ NON-HEAD-DTR.SYNSEM [OPT bool, 
                          LOCAL.CAT.HEAD +vjrpcdmo],
     SYNSEM.LOCAL.CONT.HOOK.XARG #x, 
     HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG #x].
@@ -181,37 +181,40 @@ kin-noun-lex := noun-lex &
 role-noun-lex :=noun-lex &
  [ SYNSEM.LOCAL.CAT.HEAD role ].
 
-;;; Classifier-head rule 
-
+;;; ::d rule 
+;;; FCB FIXME -- CONT.HOOK #hdhook ???
 cl-head-phrase-super := binary-nonloc-phrase & phrasal &
-              binary-headed-phrase &
+              binary-headed-phrase & head-compositional &
   [ INFLECTED infl-satisfied,
     SYNSEM [ LOCAL.CAT [ WH [ OR < #or1, #or2 > ],
                          VAL [ SUBJ #subj,
                                COMPS #spcomps,
-                               SPR  < [ LOCAL.CAT.HEAD det ] >,
-                               SPEC #spec ],
-                         POSTHEAD #ph,
-                         HC-LIGHT - ],
+                               SPR  < [ LOCAL.CAT.HEAD det &
+			                               [ PRON #pron ] ] >,
+			       SPEC #spec ],
+			 POSTHEAD #ph,
+			 HC-LIGHT - ],
               MODIFIED #modif ],
     HEAD-DTR [ INFLECTED infl-satisfied,
                SYNSEM [ LOCAL [ CAT [ WH #or1,
                                       HEAD #head,
                                       VAL [ SUBJ #subj,
                                             COMPS olist & #comps,
-                                            SPR < #synsem >, 
+                                            SPR < #synsem  >, 
                                             SPEC #spec ],
                                       POSTHEAD #ph ],
-                                CONT.HOOK #hdhook & [LTOP #h, INDEX #i ]],
+                                CONT.HOOK [LTOP #h, index #i ]],
                         MODIFIED #hmodif ] ],
     NON-HEAD-DTR.SYNSEM #synsem &
-     [ LOCAL [ CAT [ WH #or2, VAL [ SPR < >,
-                                    SPEC < [ LOCAL [ CAT [ HEAD #head,
-                                                            VAL.COMPS #comps ],
-                                                      CONT.HOOK #hdhook ],
-                                              MODIFIED #hmodif ] > ,
-                                    COMPS #spcomps ] ], 
-              CONT.HOOK [LTOP #h, XARG #i ] ] ,
+     [ LOCAL [ CAT [ WH #or2,
+		     HEAD.PRON #pron,
+		     VAL [ SPR < >,
+			   SPEC < [ LOCAL [ CAT [ HEAD #head,
+						  VAL.COMPS #comps ],
+					    CONT.HOOK #hdhook ],
+				    MODIFIED #hmodif ] > ,
+			   COMPS #spcomps ] ], 
+	       CONT.HOOK [LTOP #h, XARG #i ] ] ,
        MODIFIED #modif ],
     C-CONT [ RELS.LIST < >, HCONS.LIST < >, ICONS.LIST < > ] ].
 
@@ -302,25 +305,30 @@ determiner-lex := basic-determiner-lex & basic-non-wh-word-lex & norm-zero-arg &
                        HEAD.INIT + ] ].
 
 demonstrative-determiner-lex := determiner-lex & no-icons-lex-item &
-  [ SYNSEM.L-QUE - ].
+  [ SYNSEM.L-QUE -,
+    SYNSEM.LKEYS.KEYREL.ARG0 [COG-ST activ+fam ] ].
   
 ;;; Classifiers
 
 classifier-lex := norm-sem-lex-item & non-local-none-lex-item & non-mod-lex-item & no-hcons-lex-item &
 """
 <ex> 我 食 一 個 蘋果 。
-<ex> 我 食 呢 一 個 蘋果 。
+<ex> 明恩 食 呢 一 個 蘋果 。
+<ex> 明恩 食 一 個 蘋果
+<ex> 明恩 食 個 蘋果
+<ex> 明恩 食 呢 個 蘋果
+<ex> 明恩 食 蘋果
 """ 
-  [ SYNSEM.LOCAL  [ CAT [ VAL [ SPR < [ LOCAL.CAT.HEAD num ] >,
-                             COMPS < >,
-                             SUBJ < > ],
-                       HEAD classifier & 
-                       [INIT + ] ],
+  [ SYNSEM [ LOCAL  [ CAT [ VAL [ SPR < [ LOCAL.CAT.HEAD num, 
+					  OPT + ] >,
+				  COMPS < >,
+				  SUBJ < > ],
+			    HEAD classifier & 
+				[INIT +] ],
                     CONT  [ HOOK.XARG #arg,
-                    ICONS.LIST < >,
-                          RELS.LIST < arg1-ev-relation &
-                                      [ ARG1 ref-ind & #arg,
-                                      ] > ] ] ].
+                    	    ICONS.LIST < > ] ], 
+              LKEYS.KEYREL arg1-relation &
+                           [ ARG1 ref-ind & #arg ] ]].
 
 
 
@@ -331,7 +339,7 @@ card_rel := norm_rel.
 carg-relation := arg0-relation &
   [ CARG string ].
     
-card-relation := carg-relation & arg1-relation &
+card-relation := carg-relation & arg1-ev-relation &
 	[ PRED card_rel ]. 
 	
 named-relation := noun-relation & carg-relation &
@@ -343,8 +351,8 @@ This is the main type for basic Numerals.
 They have [HEAD num]. And the special head-feature [CARDINAL +].
 
 Their semantics is somewhat special, using CARG in a similar way as named relations.
-We want: the ARG0 of the think it will specify over (SPEC) to be the same as ARG1 on the relation it introduces.
- [FIXME]  LOOK WHY USING THIS ONE, THE ARG0 and ARG1 is links
+We want: the ARG0 of the thing it will specify over (SPEC) to be the same as ARG1 on the relation it introduces.
+ 
 """
   [ SYNSEM [ LOCAL [ CAT [ VAL [ COMPS < >,
 				 SUBJ < >,
@@ -352,15 +360,14 @@ We want: the ARG0 of the think it will specify over (SPEC) to be the same as ARG
 				 SPEC < [ LOCAL.CONT.HOOK [
 				 LTOP #lbl, INDEX #arg1 ]] > ],
 			   HEAD num & [ MOD < > ] ],
-		     CONT [ HOOK [ LTOP #lbl, 
-				   INDEX #index ],
+		     CONT [ HOOK [ LTOP #lbl ],
 			    RELS <! #rel !>,
 			    HCONS <! !> ] ],
 	     LKEYS.KEYREL card-relation & #rel & [ LBL #lbl,
-						   ARG0 #index,
 						   ARG1 #arg1 ] ] ].
 
-numeral-lex :=  numeral-super-lex & non-local-none-lex-item.
+numeral-lex :=  numeral-super-lex & non-local-none-lex-item &
+[ SYNSEM.LOCAL.CAT.VAL.SPEC <  [ LOCAL.CAT.HEAD [PRON + ] ] > ].
 
 ;numeral-que-lex = numeral-super-lex & ...   
 ; for 幾多
@@ -515,7 +522,8 @@ basic-bare-np-phrase := head-only & unary-nonloc-phrase &
   [ SYNSEM [ LOCAL.CAT [ WH #wh,
                        VAL [ SPR < >,
                            SUBJ < >,
-                           COMPS < >, SPEC #spec ] ] ],
+                           COMPS < >,
+			   SPEC #spec ] ] ],
     HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
                                   HEAD noun,
                                   VAL [ SPR < unexpressed &
@@ -534,11 +542,46 @@ basic-bare-np-phrase := head-only & unary-nonloc-phrase &
              ICONS.LIST < >,
              HOOK [ INDEX #index ] ] ].
 
+bare-np-phrase-super := basic-bare-np-phrase &
+  [ C-CONT.RELS.LIST < [ PRED "exist_q_rel"]  > ].
+
+bare-np-phrase := bare-np-phrase-super &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SPR < [ LOCAL.CAT.HEAD.PRON + ] >,
+    C-CONT.RELS.LIST < [ ARG0 [ COG-ST type-id  ] ] > ].
+
+bare-cl-np-phrase := bare-np-phrase-super &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SPR < [ LOCAL.CAT.HEAD det & [PRON - ] ] >,
+    C-CONT.RELS.LIST < [ ARG0 [ COG-ST fam-or-less  ] ] > ].
 
 
+;;; bare-clp-phrase
 
-bare-np-phrase := basic-bare-np-phrase &
-  [ C-CONT.RELS.LIST < [ PRED "exist_q_rel" ] > ].
+bare-clp-phrase := head-only & unary-nonloc-phrase & head-compositional &
+  [ SYNSEM [ LOCAL [ CAT [ WH #wh,
+                           VAL [ SPR < >,
+                                 SUBJ < >,
+                                 COMPS < >, SPEC #spec ] ],
+                     CONT.HOOK [ INDEX #index,
+                                 LTOP #lbl, 
+                                 XARG #xarg ] ] ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
+                                  HEAD classifier & [ PRON - ],
+                                  VAL [ SPR < unexpressed &
+                                              [ LOCAL.CAT.HEAD num,
+                                                OPT bool ] >,
+                                        SUBJ < >,
+                                        COMPS < >, SPEC #spec ] ],
+                            CONT.HOOK [ INDEX #index,
+                                        LTOP #lbl, 
+                                 	XARG #xarg] ],
+    C-CONT [ RELS.LIST < card-relation &
+                     [  LBL #lbl,
+                        ARG1 #index, 
+                        CARG "1" ] >,
+             HCONS.LIST < >,
+             ICONS.LIST < >,
+             HOOK [ INDEX #index ] ] ].
+
 
 ;;; Wh-question-related phrasal types
 

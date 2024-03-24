@@ -19,6 +19,10 @@ cl-head := cl-head-phrase.
 
 bare-np := bare-np-phrase.
 
+bare-cl-np := bare-cl-np-phrase.
+
+bare-clp := bare-clp-phrase.
+
 np1-top-coord := np1-top-coord-rule.
 
 np1-mid-coord := np1-mid-coord-rule.
