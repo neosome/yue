@@ -103,9 +103,9 @@ possessum-2 := possessum & possessive-2.
 common := noun. 
 proper := noun.
 kin-or-role := noun. 
-classifier-or-determiner := head.
-classifier := classifier-or-determiner.
-det := classifier-or-determiner & +do & +dm & +cd & +pd & +rd & +jd & +vd & +nd. 
+cls-or-det := head.
+cls := cls-or-det.
+det := cls-or-det & +do & +dm & +cd & +pd & +rd & +jd & +vd & +nd. 
 
 
 kin := kin-or-role.
@@ -140,7 +140,7 @@ wh-pronoun-noun-lex := basic-wh-word-lex & norm-hook-lex-item & basic-icons-lex-
 noun-lex := basic-noun-lex & basic-non-wh-word-lex & non-local-none-lex-item & no-hcons-lex-item & non-mod-lex-item &
   [ ARG-ST < #spr >,
     SYNSEM.LOCAL.CAT [ VAL [ SPR < #spr &
-                                   [ LOCAL.CAT [ HEAD classifier, 
+                                   [ LOCAL.CAT [ HEAD cls, 
                                    VAL.SPR <> ] ] >,
                              COMPS < >,
                              SUBJ < >,
@@ -225,7 +225,7 @@ cl-head-phrase-super := binary-nonloc-phrase & phrasal &
     C-CONT [ RELS.LIST < >, HCONS.LIST < >, ICONS.LIST < > ] ].
 
 cl-head-phrase := cl-head-phrase-super & head-final &
-  [ NON-HEAD-DTR.SYNSEM [LOCAL [ CAT.HEAD classifier,
+  [ NON-HEAD-DTR.SYNSEM [LOCAL [ CAT.HEAD cls,
   			         CONT.HOOK #hook ],
                          OPT - ],
     C-CONT.HOOK #hook ].
@@ -329,7 +329,7 @@ classifier-lex := norm-sem-lex-item & non-local-none-lex-item & non-mod-lex-item
 					  OPT + ] >,
 				  COMPS < >,
 				  SUBJ < > ],
-			    HEAD classifier & 
+			    HEAD cls & 
 				[INIT +] ],
                     CONT  [ HOOK.XARG #arg,
                     	    ICONS.LIST < > ] ], 
@@ -441,10 +441,12 @@ possessor-adp-N-lex  := possessor-adp-lex-1 &
 <ex> 食 呢 個 明恩 嘅 蘋果 
 where apple is a bare N:  食  呢 個 [ 明恩 嘅 ] 蘋果 
 
+<ex> 食 一 個 呢 個 明恩 嘅 蘋果 
+
 <nex> 食 呢 明恩 嘅 個 蘋果
 Blocked as the clp-N [個 蘋果] is looking for a a determiner
 """
-  [ SYNSEM.LOCAL.CAT.HEAD.MOD.FIRST.LOCAL.CAT.VAL.SPR < [ LOCAL.CAT.HEAD classifier ] > ].
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD.FIRST.LOCAL.CAT.VAL.SPR < [ LOCAL.CAT.HEAD cls ] > ].
 
 
 
@@ -562,7 +564,7 @@ basic-bare-np-phrase := head-only & unary-nonloc-phrase &
     HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
                                   HEAD noun,
                                   VAL [ SPR < unexpressed &
-                                              [ LOCAL.CAT.HEAD classifier-or-determiner,
+                                              [ LOCAL.CAT.HEAD cls-or-det,
                                                 OPT + ] >,
                                         SUBJ < >,
                                         COMPS < >, SPEC #spec ] ],
@@ -600,7 +602,7 @@ bare-clp-phrase := head-only & unary-nonloc-phrase & head-compositional &
                                  LTOP #lbl, 
                                  XARG #xarg ] ] ],
     HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
-                                  HEAD classifier & [ PRON - ],
+                                  HEAD cls & [ PRON - ],
                                   VAL [ SPR < unexpressed &
                                               [ LOCAL.CAT.HEAD num,
                                                 OPT bool ] >,
