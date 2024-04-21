@@ -23,9 +23,15 @@ basic-head-comp-phrase :+ [ SYNSEM [ LIGHT #light,
                          MC #mc ] ],
     HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
 
-head :+ [ PRON bool,
-    POSSESSOR poss,
-    INIT bool ].
+head :+
+"""
+PRON is used in NPs to show if something is a pronouns?
+PRON is used in ClP to show if something has been explicitly counted
+     CTD in the paper
+"""
+[ PRON bool,
+  POSSESSOR poss,
+  INIT bool ].
 
 png :+ [ PER person ].
 
@@ -385,7 +391,7 @@ two-rel-adposition-lex := basic-icons-lex-item & non-local-none-lex-item &
              LKEYS.KEYREL arg12-ev-relation &
                           [ ARG2 #ind ] ] ].
 
-possessor-adp-lex-1 := two-rel-adposition-lex &
+possessor-adp-lex-1 := two-rel-adposition-lex & basic-intersective-mod-lex &
 """
 This is the possesive marker, it takes a complement on the left (the possesor: ARG2) and modifies the possessee (ARG1) on the right.
 <ex> 我 嘅 朋友 鍾意 大笨象 
@@ -400,8 +406,7 @@ This is the possesive marker, it takes a complement on the left (the possesor: A
                                                      CONT.HOOK.INDEX #possessor ] ] ],
                          HEAD [ INIT -,
                                 POSSESSOR possessor-1,
-                                MOD.FIRST.LOCAL [ CAT [ VAL.SPR < [ ] >,
-                                                        HEAD noun &
+                                MOD.FIRST.LOCAL [ CAT [ HEAD noun &
                                                              [ PRON - ] ],
                                                   CONT.HOOK [ INDEX #possessum,
                                                               LTOP #lbl ] ] ] ],
@@ -412,6 +417,36 @@ This is the possesive marker, it takes a complement on the left (the possesor: A
                                         LBL #lbl,
                                         ARG1 #possessum,
                                         ARG2 #possessor ] > ] ] ].
+
+possessor-adp-NP-lex := possessor-adp-lex-1 &
+"""
+External possessive modificiation
+
+<ex> 食 明恩 嘅 呢 個 蘋果
+食 [明恩 嘅] [呢 個 蘋果]
+
+maybe one reading of
+<ex> 食 呢 個 明恩 嘅 蘋果 
+
+where apple is a bare NP: 食 [ [呢 個 明恩] 嘅 ] 蘋果 
+
+<nex> 食 呢 明恩 嘅 個 蘋果
+
+"""
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD.FIRST.LOCAL.CAT.VAL.SPR <> ].
+
+
+possessor-adp-N-lex  := possessor-adp-lex-1 &
+"""
+<ex> 食 呢 個 明恩 嘅 蘋果 
+where apple is a bare N:  食  呢 個 [ 明恩 嘅 ] 蘋果 
+
+<nex> 食 呢 明恩 嘅 個 蘋果
+Blocked as the clp-N [個 蘋果] is looking for a a determiner
+"""
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD.FIRST.LOCAL.CAT.VAL.SPR < [ LOCAL.CAT.HEAD classifier ] > ].
+
+
 
 basic-adposition-lex :+ [ SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR nonpossessive,
                        POSSESSUM nonpossessive ] ].

@@ -32,7 +32,10 @@
 嗎 := q-particle1-lex &
   [ STEM < "嗎" > ].
 
-possessor-adp-1 := possessor-adp-lex-1 &
+possessor-NP-adp := possessor-adp-NP-lex &
+  [ STEM < "嘅" > ].
+
+possessor-N-adp := possessor-adp-N-lex &
   [ STEM < "嘅" > ].
 
 ;;; Conjunctions
