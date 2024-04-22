@@ -31,17 +31,19 @@ n-bottom-label := label &
   
           
 n-label := label &
-            [ SYNSEM.LOCAL [ CAT [ HEAD noun,
-                                   VAL.SPR < [ ] > ],
-                             COORD-STRAT "" ], 
-              LABEL-NAME "N" ].
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
+			   VAL.SPR < [ ] > ],
+		     COORD-STRAT "" ], 
+	     LIGHT +  ],
+    LABEL-NAME "N" ].
           
  
 nbar-label := label & 
-           [ SYNSEM.LOCAL [ CAT [ HEAD noun,
-                                 VAL.SPR < [ SYNSEM.LOCAL.CAT.HEAD det ] > ],
-                          COORD-STRAT "" ],
-          LABEL-NAME "Nbar" ]. 
+  [ SYNSEM [LOCAL [ CAT [ HEAD noun,
+			  VAL.SPR < [ ] > ],
+		    COORD-STRAT "" ],
+	    LIGHT -  ],
+    LABEL-NAME "N′" ]. 
           
 
 n-top-label := label &
