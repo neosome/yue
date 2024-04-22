@@ -333,7 +333,7 @@ classifier-lex := norm-sem-lex-item & non-local-none-lex-item & non-mod-lex-item
 				[INIT +] ],
                     CONT  [ HOOK.XARG #arg,
                     	    ICONS.LIST < > ] ], 
-              LKEYS.KEYREL arg1-relation &
+              LKEYS.KEYREL arg1-ev-relation &
                            [ ARG1 ref-ind & #arg ] ]].
 
 
@@ -593,12 +593,14 @@ bare-cl-np-phrase := bare-np-phrase-super &
 
 ;;; bare-clp-phrase
 
-bare-clp-phrase := head-only & unary-nonloc-phrase & head-compositional &
+bare-clp-phrase := head-only & unary-nonloc-phrase & 
   [ SYNSEM [ LOCAL [ CAT [ WH #wh,
                            VAL [ SPR < >,
                                  SUBJ < >,
-                                 COMPS < >, SPEC #spec ] ],
-                     CONT.HOOK [ INDEX #index,
+                                 COMPS < >,
+				 SPEC #spec &
+				 < [ LOCAL.CONT.HOOK.INDEX #nindex ] >] ],
+                     CONT.HOOK [ INDEX #nindex,
                                  LTOP #lbl, 
                                  XARG #xarg ] ] ],
     HEAD-DTR.SYNSEM.LOCAL [ CAT [ WH #wh,
@@ -607,7 +609,8 @@ bare-clp-phrase := head-only & unary-nonloc-phrase & head-compositional &
                                               [ LOCAL.CAT.HEAD num,
                                                 OPT bool ] >,
                                         SUBJ < >,
-                                        COMPS < >, SPEC #spec ] ],
+                                        COMPS < >,
+					SPEC #spec ] ],
                             CONT.HOOK [ INDEX #index,
                                         LTOP #lbl, 
                                  	XARG #xarg] ],
@@ -616,8 +619,7 @@ bare-clp-phrase := head-only & unary-nonloc-phrase & head-compositional &
                         ARG1 #index, 
                         CARG "1" ] >,
              HCONS.LIST < >,
-             ICONS.LIST < >,
-             HOOK [ INDEX #index ] ] ].
+             ICONS.LIST < > ]].
 
 
 ;;; Wh-question-related phrasal types
