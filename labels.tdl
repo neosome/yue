@@ -16,6 +16,12 @@
 ;;; the more specific one must appear first in this list, or
 ;;; it will never get used.
 
+marker-label := label &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD marker],
+		     COORD-STRAT "" ], 
+	     LIGHT +  ],
+    LABEL-NAME "ASP" ].
+    
 n-mid-label := label &
             [ SYNSEM.LOCAL [ CAT [ HEAD noun,
                                    VAL.SPR < [ ] > ],
