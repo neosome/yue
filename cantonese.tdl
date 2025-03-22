@@ -272,6 +272,110 @@ no-obj-drop-verb-lex := transitive-verb-lex &
 
 obj-drop-verb-lex := transitive-verb-lex.
 
+
+;;; Verbal particles (marker)
+
+marker-or-punct := head & 
+ [ MOD <> ].
+marker := marker-or-punct.
+punct := marker-or-punct.
+
+
+basic-head-marker-phrase := binary-nonloc-phrase & binary-headed-phrase & head-compositional &
+"""
+marker's comps = head
+non-marker daughter = head
+
+"""
+  [SYNSEM.LOCAL.CAT.VAL #val,
+   HEAD-DTR.SYNSEM canonical-synsem & #synsem & 
+  	[LOCAL.CAT.VAL #val],
+    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL [ SUBJ < >,
+                                        SPR < >,
+                                        SPEC < >,
+                                        COMPS < #synsem > ]]],
+       
+    C-CONT [ RELS.LIST < >,
+       HCONS.LIST < >,
+       ICONS.LIST < > ] ].
+
+
+
+head-marker-phrase := basic-head-marker-phrase & head-initial &
+ [ MARKER-DTR.SYNSEM.LOCAL.CAT.HEAD marker ]. 
+ 
+  
+ 
+ perfective := aspect.
+
+ tentative := aspect.
+
+ imp-exp-or-dur := aspect
+"""
+Copied from zhong. This is the aspect value 没 restricts to.
+When it appears by itself, it is usually considered simply 'imperfective'. However, 没 is also used to negate 过, 着 and 在. This means that 'imperfective', 'experiential' and 'durative' need to inherit from a single parent. 
+When paired with one of the other aspect particles, they will find the adequate GLB.
+
+[FIXME] This would be a case where we would want to rewrite this using the vpm. 'imperfective-or-experiential-or-durative' could be set to 'imperfective' by default to avoid overgeneration. 
+""".
+
+imperfective := imp-exp-or-dur.
+
+experiential := imp-exp-or-dur.
+
+durative := imp-exp-or-dur.
+
+
+aspect-marker := raise-sem-lex-item & no-icons-lex-item &
+"""
+
+
+this is used by 'comp-marker' to join aspect markers to verbs 
+Aspect markers such as 咗 take a complement  (previously +vp, +vj in zhong)
+It was AUX- in zhong. 
+
+"""
+  [ SYNSEM [ LOCAL [ CAT [ HEAD marker & [ MOD <> ],
+			   VAL [ COMPS < lex-synsem & 
+					 [ MODIFIED notmod,
+					   LOCAL [ CAT [ HEAD verb,
+                                                         VAL.SUBJ < [] > ] ] ] >,
+				 SUBJ < >,
+				 SPEC < >,
+				 SPR < > ],
+			   POSTHEAD + ] ],
+	     NON-LOCAL [ SLASH.list  < >,
+                         REL.list < >,
+                         QUE.list < > ] ] ].
+
+
+pfv-marker-lex := aspect-marker &
+"""
+This is used for 咗, to mark perfective aspect.
+
+<ex> 我 食 咗 個 蘋果 
+<ex> 我 食 住 先 
+
+
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ] > ] ].
+
+
+dur-marker-lex := aspect-marker &
+"""
+This is used for 住, to mark perfective aspect.
+
+<ex> 你 坐 住 先
+
+<nex> 你 去 住 先 
+
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL [ CONT.HOOK.INDEX.E.ASPECT durative,
+					    CAT.HEAD +vj ] ] > ] ].
+					    
+
+
+
 ;;; Complementizers
 
 ; We treat question particles as complementizers.

@@ -302,7 +302,14 @@ sei2 := simple_intransitive-verb-lex &
 捉 := simple_transitive-verb-lex &
   [ STEM < "捉" >,
     SYNSEM.LKEYS.KEYREL.PRED "_捉_v_rel" ].
+    
+;;; Verbal particles (markers)
 
+ 咗  := pfv-marker-lex & 
+  [ STEM < "咗" >].
+  
+住  := dur-marker-lex & 
+  [ STEM < "住" >].
 
 ;;; Determiners
 

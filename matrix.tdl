@@ -1581,8 +1581,8 @@ phrasal := phrase &
 ; treatment of REL and QUE.
 
 ;head-valence-phrase := head-nexus-phrase &
-;  [ SYNSEM.NON-LOCAL.SLASH #slash,
-;    HEAD-DTR.SYNSEM.NON-LOCAL.SLASH #slash ].
+ ; [ SYNSEM.NON-LOCAL.SLASH #slash,
+  ;  HEAD-DTR.SYNSEM.NON-LOCAL.SLASH #slash ].
 
 ; All phrases are either unary or binary.
 

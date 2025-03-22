@@ -9,6 +9,8 @@ subj-head := subj-head-phrase.
 
 comp-head := comp-head-phrase.
 
+head-marker := head-marker-phrase.
+
 adj-head-int := adj-head-int-phrase.
 
 poss-2 := poss-phrase-2.
