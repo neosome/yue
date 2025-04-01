@@ -310,7 +310,19 @@ sei2 := simple_intransitive-verb-lex &
   
 住  := dur-marker-lex & 
   [ STEM < "住" >].
-
+  
+緊  := prog-marker-lex & 
+  [ STEM < "緊" >].
+  
+吓  := ten-marker-lex & 
+  [ STEM < "吓" >]. 
+  
+開  := hab-marker-lex & 
+  [ STEM < "開" >].
+  
+慣  := hab-marker-lex & 
+  [ STEM < "慣" >].
+  
 ;;; Determiners
 
 呢 := demonstrative-determiner-lex &

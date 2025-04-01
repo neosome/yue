@@ -363,19 +363,47 @@ This is used for 咗, to mark perfective aspect.
 
 dur-marker-lex := aspect-marker &
 """
-This is used for 住, to mark perfective aspect.
+This is used for 住, to mark durative aspect.
 
 <ex> 你 坐 住 先
 
-<nex> 你 去 住 先 
 
 """
- [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL [ CONT.HOOK.INDEX.E.ASPECT durative,
-					    CAT.HEAD +vj ] ] > ] ].
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT durative ] > ] ].
 					    
+prog-marker-lex := aspect-marker &
+"""
+This is used for 緊, to mark progressive aspect.
+
+<ex> 我 食 緊 蘋果
+
+<nex> 你 死 緊 
+
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT progressive ] > ] ].
+					    
+ten-marker-lex := aspect-marker &
+"""
+This is used for 吓, to mark tentative aspect.
+
+<ex> 你 食 吓 
+
+<nex> 你 死 吓 
+
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT tentative ] > ] ].
+					    
+hab-marker-lex := aspect-marker &
+"""
+This is used for 開／慣, to mark perfective aspect.
+
+<ex> 你 食 開 蘋果
 
 
-
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ] > ] ].
+ 
+					  				    
 ;;; Complementizers
 
 ; We treat question particles as complementizers.
