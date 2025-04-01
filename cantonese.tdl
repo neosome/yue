@@ -305,26 +305,14 @@ head-marker-phrase := basic-head-marker-phrase & head-initial &
  [ MARKER-DTR.SYNSEM.LOCAL.CAT.HEAD marker ]. 
  
   
- 
- perfective := aspect.
-
- tentative := aspect.
-
- imp-exp-or-dur := aspect
-"""
-Copied from zhong. This is the aspect value 没 restricts to.
-When it appears by itself, it is usually considered simply 'imperfective'. However, 没 is also used to negate 过, 着 and 在. This means that 'imperfective', 'experiential' and 'durative' need to inherit from a single parent. 
-When paired with one of the other aspect particles, they will find the adequate GLB.
-
-[FIXME] This would be a case where we would want to rewrite this using the vpm. 'imperfective-or-experiential-or-durative' could be set to 'imperfective' by default to avoid overgeneration. 
-""".
-
-imperfective := imp-exp-or-dur.
-
-experiential := imp-exp-or-dur.
-
-durative := imp-exp-or-dur.
-
+no-aspect := aspect
+has-aspect := aspect
+perfective-or-experential  := has-aspect
+perfective  := perfective-or-experential
+experential  := perfective-or-experential
+progressive := has-aspect
+continous   := has-aspect
+tentative  := has-aspect 
 
 aspect-marker := raise-sem-lex-item & no-icons-lex-item &
 """
