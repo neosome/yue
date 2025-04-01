@@ -308,7 +308,7 @@ sei2 := simple_intransitive-verb-lex &
  咗  := pfv-marker-lex & 
   [ STEM < "咗" >].
   
-住  := dur-marker-lex & 
+住  := cont-marker-lex & 
   [ STEM < "住" >].
   
 緊  := prog-marker-lex & 
