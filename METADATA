@@ -24,19 +24,19 @@
 
 ## Grammar maintainers and contributors
 
-MAINTAINER=""
-CONTRIBUTORS=""
-CONTACT_EMAIL=""
+MAINTAINER="Joanna Ut-Seong Sio"
+CONTRIBUTORS="Luis Morgado da Costa, Francis Bond"
+CONTACT_EMAIL="joannautseong.sio@upol.cz "
 
 ## Grammar name and web presence
 ## Note: if SHORT_GRAMMAR_NAME is not defined, the directory name is used.
 
-GRAMMAR_NAME=""
-SHORT_GRAMMAR_NAME=""
-WEBSITE=""
+GRAMMAR_NAME="Cantonese HPSG"
+SHORT_GRAMMAR_NAME="yue"
+WEBSITE="https://github.com/neosome/yue"
 DEMO_WEBSITE=""
 DOCUMENTATION_URL=""
-ISSUE_TRACKER=""
+ISSUE_TRACKER="https://github.com/neosome/yue/issues"
 LICENSE=""
 
 ## You may optionally specify a release date for the grammar. If unspecified,
@@ -49,7 +49,11 @@ LATEST_RELEASE=""
 ## will be used in the Grammar Catalogue
 BIB_URL=""
 PDF_URL=""
-CITE=""
+CITE="Sio, Joanna Ut-Seong & Sanghoun Song. 2015. Divergence in expressing definite-
+ness between Mandarin and Cantonese. In Stefan Müller (ed.), Proceedings of
+the 22nd International Conference on Head-Driven Phrase Structure Grammar,
+Nanyang Technological University (NTU), Singapore, 177–194. Stanford, CA:
+CSLI Publications. DOI: 10.21248/hpsg.2015.11."
 
 ## Version Control
 ## If this is not provided, it is automatically extracted from the
