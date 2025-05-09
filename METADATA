@@ -59,7 +59,7 @@ CSLI Publications. DOI: 10.21248/hpsg.2015.11."
 ## If this is not provided, it is automatically extracted from the
 ## local version control info. You only need to modify this if the
 ## version control URL you use locally is not the one you want published
-VCS=""
+VCS="https://github.com/neosome/yue.git"
 
 ## Semi-colon separated list of required external resources 
 ## e.g.
@@ -88,17 +88,17 @@ ASSOCIATED_RESOURCES=""
 #GRAMMAR_TYPE="Resource grammar"
 #GRAMMAR_TYPE="Treebank trained grammar"
 #GRAMMAR_TYPE="Medium-sized linguistic grammar"
-#GRAMMAR_TYPE="Experimental grammar"
+GRAMMAR_TYPE="Experimental grammar"
 
 
 ## Language identification
 ## Iso-codes can be looked up at http://www.sil.org/iso639-3/codes.asp
 
-LANGUAGE_NAME=""
-ISO_CODE=""
+LANGUAGE_NAME="Cantonese"
+ISO_CODE="yue"
 
 ## File locations of LKB script file and .grm file read by cheap
 ## Paths relative to top of grammar directory
 
 LKB_SCRIPT_FILE=""
-CHEAP_GRM_FILE_NAME=""
+ACE_CONFIG_FILE="ace/config.tdl"
