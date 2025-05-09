@@ -49,11 +49,11 @@ LATEST_RELEASE=""
 ## will be used in the Grammar Catalogue
 BIB_URL=""
 PDF_URL=""
-CITE="Sio, Joanna Ut-Seong & Sanghoun Song. 2015. Divergence in expressing definite-
-ness between Mandarin and Cantonese. In Stefan Müller (ed.), Proceedings of
-the 22nd International Conference on Head-Driven Phrase Structure Grammar,
-Nanyang Technological University (NTU), Singapore, 177–194. Stanford, CA:
-CSLI Publications. DOI: 10.21248/hpsg.2015.11."
+CITE="""
+Sio, Joanna Ut-Seong & Sanghoun Song. 2015. Divergence in expressing definiteness between Mandarin and Cantonese.
+In Stefan Müller (ed.), Proceedings of the 22nd International Conference on Head-Driven Phrase Structure Grammar,
+Nanyang Technological University (NTU), Singapore, 177–194. Stanford, CA: CSLI Publications.
+DOI: 10.21248/hpsg.2015.11."""
 
 ## Version Control
 ## If this is not provided, it is automatically extracted from the
