@@ -280,8 +280,8 @@ sei2 := simple_intransitive-verb-lex &
     SYNSEM.LKEYS.KEYREL.PRED "_鍾意_v_rel" ].
     
 食咗 := simple_transitive-verb-lex &
-  [ STEM < "食"，"咗" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_見到_v_rel" ].
+  [ STEM < "食", "咗" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_食咗_v_rel" ].
 
 踢 := simple_transitive-verb-lex &
   [ STEM < "踢" >,
