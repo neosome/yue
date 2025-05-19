@@ -316,7 +316,7 @@ tentative  := has-aspect.
 habitual  := has-aspect. 
 experiential  := has-aspect. 
 
-aspect-marker := raise-sem-lex-item & no-icons-lex-item &
+verbal-marker := raise-sem-lex-item & no-icons-lex-item &
 """
 
 
@@ -326,17 +326,23 @@ It was AUX- in zhong.
 
 """
   [ SYNSEM [ LOCAL [ CAT [ HEAD marker & [ MOD <> ],
-			   VAL [ COMPS < lex-synsem & 
-					 [ MODIFIED notmod,
-					   LOCAL [ CAT [ HEAD verb,
-                                                         VAL.SUBJ < [] > ] ] ] >,
-				 SUBJ < >,
+			   VAL [ SUBJ < >,
+			   COMPS < [ LOCAL.CAT.HEAD +vj ] >,
 				 SPEC < >,
 				 SPR < > ],
 			   POSTHEAD + ] ],
 	     NON-LOCAL [ SLASH.list  < >,
                          REL.list < >,
                          QUE.list < > ] ] ].
+
+aspect-marker := verbal-marker &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < lex-synsem &
+                                      [ MODIFIED notmod ] >].
+
+
+sentence-marker  := verbal-marker &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < phr-synsem  &
+				      [ LOCAL.CAT cat-sat ] >].
 
 
 pfv-marker-lex := aspect-marker &
@@ -405,7 +411,28 @@ This is used for 開／慣, to mark perfective aspect.
 """
  [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ] > ] ].
  
-					  				    
+;;; Sentence final particle
+
+sfp-q-lex := sentence-marker &
+"""
+
+Sentence final particle for polar questions
+
+<ex> 你 食 嗎 
+<ex> 你 食 乜嘢 嗎 
+<nex> 邊個 食 嗎 
+
+Forces indefinite reading of interrogative
+FIXME block reapplication
+FIXME block punctuation
+
+"""
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ NON-LOCAL.QUE.LIST < >  ] >,
+		     CONT.HOOK.INDEX.SF ques ] ] ].
+
+
+
+
 ;;; Complementizers
 
 ; We treat question particles as complementizers.

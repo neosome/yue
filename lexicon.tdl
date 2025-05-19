@@ -401,7 +401,12 @@ sei2 := simple_intransitive-verb-lex &
 ;倒  := hab-marker-lex & 
 ;[ STEM <  "倒" >].   
 
-  
+
+;;; Sentence Final Particles (sfp)
+
+嗎  := sfp-q-lex & 
+ [ STEM <  "嗎" >].   
+
 ;;; Determiners
 
 呢 := demonstrative-determiner-lex &
