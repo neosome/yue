@@ -314,6 +314,7 @@ progressive := has-aspect.
 continuous   := has-aspect.
 tentative  := has-aspect. 
 habitual  := has-aspect. 
+experiential  := has-aspect. 
 
 aspect-marker := raise-sem-lex-item & no-icons-lex-item &
 """
@@ -350,6 +351,18 @@ This is used for 咗, to mark perfective aspect.
  [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ] > ] ].
 
 
+exp-marker-lex := aspect-marker &
+"""
+This is used for 過, to mark experiential aspect.
+
+<ex> 我 食 過 蘋果 
+
+
+
+"""
+ [ SYNSEM.LOCAL.CAT.VAL [ COMPS < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ] > ] ].
+
+
 cont-marker-lex := aspect-marker &
 """
 This is used for 住, to mark continous aspect.
@@ -364,8 +377,8 @@ prog-marker-lex := aspect-marker &
 """
 This is used for 緊, to mark progressive aspect.
 
+<ex> 我 食 緊 個 蘋果
 <ex> 我 食 緊 蘋果
-
 <nex> 你 死 緊 
 
 """

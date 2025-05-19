@@ -148,6 +148,10 @@ gau2 := common-noun-lex &
   [ STEM < "人" >,
     SYNSEM.LKEYS.KEYREL.PRED "_人_n_rel" ].  
     
+衫 := common-noun-lex &
+  [ STEM < "衫" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_衫_n_rel" ].  
+     
 餸 := common-noun-lex &
   [ STEM < "餸" >,
     SYNSEM.LKEYS.KEYREL.PRED "_餸_n_rel" ].  
@@ -155,7 +159,15 @@ gau2 := common-noun-lex &
 菜 := common-noun-lex &
   [ STEM < "菜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_菜_n_rel" ].  
+   
+牆 := common-noun-lex &
+  [ STEM < "牆" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_牆_n_rel" ].  
     
+畫 := common-noun-lex &
+  [ STEM < "畫" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_畫_n_rel" ].  
+
 薯仔 := common-noun-lex &
   [ STEM < "薯仔" >,
     SYNSEM.LKEYS.KEYREL.PRED "_薯仔_n_rel" ]. 
@@ -168,6 +180,17 @@ gau2 := common-noun-lex &
   [ STEM < "西瓜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_西瓜_n_rel" ]. 
 
+ 手 := common-noun-lex &
+  [ STEM < "手" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_手_n_rel" ].
+    
+餐廳 := common-noun-lex &
+  [ STEM < "餐廳" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_餐廳_n_rel" ]. 
+    
+衫 := common-noun-lex &
+  [ STEM < "衫" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_衫_n_rel" ]. 
     
 朋友 := role-noun-lex &
   [ STEM < "朋友" >,
@@ -207,7 +230,19 @@ gau2 := common-noun-lex &
 明恩 := proper-noun-lex &
   [ STEM < "明恩" >,
     SYNSEM.LKEYS.KEYREL.PRED "_明恩_n_rel" ].  
+      
+張三 := proper-noun-lex &
+  [ STEM < "張三" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_張三_n_rel" ].  
     
+李四 := proper-noun-lex &
+  [ STEM < "李四" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_李四_n_rel" ].  
+    
+日本 := proper-noun-lex &
+  [ STEM < "日本" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_日本_n_rel" ].  
+       
 細妹 := kin-noun-lex &
   [ STEM < "細妹" >,
     SYNSEM.LKEYS.KEYREL.PRED "_細妹_n_rel" ].
@@ -228,7 +263,7 @@ gau2 := common-noun-lex &
   [ STEM < "老豆" >,
     SYNSEM.LKEYS.KEYREL.PRED "_老豆_n_rel" ].
     
-
+    
 ;;; Verbs
 
 死 := simple_intransitive-verb-lex &
@@ -243,11 +278,11 @@ sei2 := simple_intransitive-verb-lex &
   [ STEM < "暈" >,
     SYNSEM.LKEYS.KEYREL.PRED "_暈_v_rel" ].    
 
-笑 := simple_intransitive-verb-lex &
+笑 := simple_transitive-verb-lex &
   [ STEM < "笑" >,
     SYNSEM.LKEYS.KEYREL.PRED "_笑_v_rel" ].    
 
-吠 := simple_intransitive-verb-lex &
+吠 := simple_transitive-verb-lex &
   [ STEM < "吠" >,
     SYNSEM.LKEYS.KEYREL.PRED "_吠_v_rel" ].
 
@@ -274,15 +309,43 @@ sei2 := simple_intransitive-verb-lex &
 瞓 := simple_intransitive-verb-lex &
   [ STEM < "瞓" >,
     SYNSEM.LKEYS.KEYREL.PRED "_瞓_v_rel" ].  
+
+完 := simple_intransitive-verb-lex &
+  [ STEM < "完" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_完_v_rel" ].  
     
 鍾意 := simple_transitive-verb-lex &
   [ STEM < "鍾意" >,
     SYNSEM.LKEYS.KEYREL.PRED "_鍾意_v_rel" ].
     
-食咗 := simple_transitive-verb-lex &
-  [ STEM < "食"，"咗" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_見到_v_rel" ].
+去 := simple_transitive-verb-lex &
+  [ STEM < "去" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_去_v_rel" ].
 
+望 := simple_transitive-verb-lex &
+  [ STEM < "望" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_望_v_rel" ].
+
+行 := simple_transitive-verb-lex &
+  [ STEM < "行" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_行_v_rel" ].
+
+見 := simple_transitive-verb-lex &
+  [ STEM < "見" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_見_v_rel" ].
+    
+油 := simple_transitive-verb-lex &
+  [ STEM < "油" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_油_v_rel" ].
+
+整 := simple_transitive-verb-lex &
+  [ STEM < "整" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_整_v_rel" ].
+    
+拎 := simple_transitive-verb-lex &
+  [ STEM < "拎" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_拎_v_rel" ].
+        
 踢 := simple_transitive-verb-lex &
   [ STEM < "踢" >,
     SYNSEM.LKEYS.KEYREL.PRED "_踢_v_rel" ].
@@ -298,12 +361,16 @@ sei2 := simple_intransitive-verb-lex &
 食 := simple_transitive-verb-lex &
   [ STEM < "食" >,
     SYNSEM.LKEYS.KEYREL.PRED "_食_v_rel" ].
+    
+試 := simple_transitive-verb-lex &
+  [ STEM < "試" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_試_v_rel" ].
 
 捉 := simple_transitive-verb-lex &
   [ STEM < "捉" >,
     SYNSEM.LKEYS.KEYREL.PRED "_捉_v_rel" ].
     
-;;; Verbal particles (markers)
+;;; Verbal particles (outer aspect markers)
 
  咗  := pfv-marker-lex & 
   [ STEM < "咗" >].
@@ -322,6 +389,18 @@ sei2 := simple_intransitive-verb-lex &
   
 慣  := hab-marker-lex & 
   [ STEM < "慣" >].
+  
+過  := hab-marker-lex & 
+  [ STEM < "過" >].
+
+;;; Inner aspect markers
+
+;親  := hab-marker-lex & 
+;[ STEM < "親" >].
+  
+;倒  := hab-marker-lex & 
+;[ STEM <  "倒" >].   
+
   
 ;;; Determiners
 
@@ -362,6 +441,24 @@ sei2 := simple_intransitive-verb-lex &
   [ STEM < "個" >,
     SYNSEM.LKEYS.KEYREL.PRED "_個_x_rel" ].
 
+件 := classifier-lex &
+  [ STEM < "件" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_件_x_rel" ].
+
+  
+ 隻 := classifier-lex &
+  [ STEM < "隻" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_隻_x_rel" ].
+    
+間 := classifier-lex &
+  [ STEM < "間" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_間_x_rel" ]. 
+    
+幅 := classifier-lex &
+  [ STEM < "幅" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_幅_x_rel" ]. 
+ 
+
 ;;; adjectives
 
 肥 := pred-adj-optspr-lex &
@@ -371,6 +468,10 @@ sei2 := simple_intransitive-verb-lex &
 瘦 := pred-adj-optspr-lex &
   [ STEM < "瘦" >,
     SYNSEM.LKEYS.KEYREL.PRED "_瘦_a_rel" ].
+ 
+ 錯 := pred-adj-optspr-lex &
+  [ STEM < " 錯" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_錯_a_rel" ].
       
 靚 := pred-adj-optspr-lex &
   [ STEM < "靚" >,
@@ -387,6 +488,11 @@ sei2 := simple_intransitive-verb-lex &
 矮 := pred-adj-optspr-lex &
   [ STEM < "矮" >,
     SYNSEM.LKEYS.KEYREL.PRED "_矮_a_rel" ].
+
+爛 := pred-adj-optspr-lex &
+  [ STEM < "爛" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_爛_a_rel" ].
+    
 
 
     
