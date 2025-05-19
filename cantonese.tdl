@@ -319,9 +319,9 @@ experiential  := has-aspect.
 verbal-marker := raise-sem-lex-item & no-icons-lex-item &
 """
 
+This is used by 'comp-marker' to join aspect markers to verbs (suchas  as 咗) and sentence final particles to sentences (such as ).
 
-this is used by 'comp-marker' to join aspect markers to verbs 
-Aspect markers such as 咗 take a complement  (previously +vp, +vj in zhong)
+Verbal markers  take a complement  (previously +vp, +vj in zhong)
 It was AUX- in zhong. 
 
 """
@@ -425,7 +425,7 @@ Sentence final particle for polar questions
 Forces indefinite reading of interrogative
 FIXME block reapplication
 FIXME block punctuation
-
+FIXME merge with complementizer :-)
 """
   [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ NON-LOCAL.QUE.LIST < >  ] >,
 		     CONT.HOOK.INDEX.SF ques ] ] ].
