@@ -237,8 +237,7 @@ cl-head-phrase := cl-head-phrase-super & head-final &
 ;;; Verbs
 
 verb-lex := basic-verb-lex & non-mod-lex-item & basic-non-wh-word-lex &
-  [ SYNSEM.LOCAL [ CAT.VAL [ SPEC < >,
-                             SUBJ < #subj > ],
+  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj > ],
                    CONT.HOOK.XARG #xarg ],
     ARG-ST.FIRST #subj &
                  [ LOCAL [ CAT cat-sat &
@@ -284,30 +283,67 @@ marker := marker-or-punct.
 punct := marker-or-punct.
 
 
-basic-head-marker-phrase := binary-nonloc-phrase & binary-headed-phrase & head-compositional &
+;;
+basic-head-marker-phrase := binary-nonloc-phrase &
 """
-marker's comps = head
-non-marker daughter = head
+DPF 2025-05-20 - Removed binary headed-phrase since we now want most but not
+all head features to come from the left daughter. Similarly, most but not all
+valence features come from the left daughter; the SPEC feature on the mother
+will be determined by the marker, so we enable sentence-markers to constrain
+their complement to be SPEC non-empty (notionally compatible with combining
+with a marker), but stamp SPEC empty on the mother to block iteration of
+marker attachments.  All while allowing aspect markers to simply propagate
+the SPEC value of their complement.
 
+right dtr = marker
+left dtr = non-marker
 """
-  [SYNSEM.LOCAL.CAT.VAL #val,
-   HEAD-DTR.SYNSEM canonical-synsem & #synsem & 
-  	[LOCAL.CAT.VAL #val],
-    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL [ SUBJ < >,
-                                        SPR < >,
-                                        SPEC < >,
-                                        COMPS < #synsem > ]]],
-       
-    C-CONT [ RELS.LIST < >,
-       HCONS.LIST < >,
-       ICONS.LIST < > ] ].
+  [SYNSEM.LOCAL [ CAT.VAL [ SUBJ #subj,
+			    SPR #spr,
+			    COMPS #comps,
+			    SPEC #spec ],
+  	          AGR #agr,
+		  COORD -,
+		  COORD-REL #crel ],
+   ARGS < [ SYNSEM canonical-synsem & #synsem & 
+		   [ LOCAL [ CAT.VAL [ SUBJ #subj,
+				       SPR #spr,
+				       COMPS #comps ],
+			     CONT.HOOK #hook,
+			     AGR #agr,
+			     COORD -,
+			     COORD-REL #crel ] ] ],
+	  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ < >,
+				   SPR < >,
+				   COMPS < #synsem >,
+				   SPEC #spec ] ] >,
+    C-CONT [ HOOK #hook,
+	     RELS.LIST < >,
+	     HCONS.LIST < >,
+	     ICONS.LIST < > ] ].
 
-
-
-head-marker-phrase := basic-head-marker-phrase & head-initial &
- [ MARKER-DTR.SYNSEM.LOCAL.CAT.HEAD marker ]. 
+;; DPF 2025-05-20 - For now, assume only one head-marker-phrase, for combining
+;; a marker with verbal (clausal) phrases.  This allows us to copy most HEAD
+;; feature values up while allowing incompatible POLAR values on non-marker
+;; daughter and mother, needed for example to enable a question-forming marker
+;; that combines only with non-questions.
+;;
+head-marker-phrase := basic-head-marker-phrase &
+ [ SYNSEM.LOCAL.CAT.HEAD +vj & [ MOD #mod,
+				 PRD #prd,
+				 KEYS #keys,
+				 PRON #pron,
+				 POSSESSOR #poss,
+				 INIT #init,
+				 POLAR #polar],
+   ARGS < [ SYNSEM.LOCAL.CAT.HEAD [ MOD #mod,
+				    PRD #prd,
+				    KEYS #keys,
+				    PRON #pron,
+				    POSSESSOR #poss,
+				    INIT #init ] ],
+	  [ SYNSEM.LOCAL.CAT.HEAD marker & [ POLAR #polar ] ] > ].
  
-  
 no-aspect := aspect.
 has-aspect := aspect.
 perfective-or-experential  := has-aspect.
@@ -339,9 +375,10 @@ It was AUX- in zhong.
                          QUE.list < > ] ] ].
 
 aspect-marker := verbal-marker & raise-sem-lex-item & 
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS < lex-synsem &
-                                      [ MODIFIED notmod ] >].
-
+  [ SYNSEM.LOCAL.CAT.VAL [ COMPS < lex-synsem &
+				   [ MODIFIED notmod,
+				     LOCAL.CAT.VAL.SPEC #spec ] >,
+			   SPEC #spec ] ].
 
 pfv-marker-lex := aspect-marker &
 """
@@ -417,11 +454,15 @@ sentence-marker  := verbal-marker &
   """
   Sentence final particles apply only to main clauses, 
   which must be saturated
+<nex> 你 食 嚟 嚟
   """
   [ SYNSEM.LOCAL.CAT [ MC #mc, 
-		       VAL.COMPS < phr-synsem  &
-				   [ LOCAL.CAT cat-sat &
-				               [ MC #mc & + ]] >]].
+		       VAL [ COMPS < phr-synsem  &
+				     [ LOCAL.CAT cat-sat &
+						 [ MC #mc & +,
+						   VAL.SPEC < [ ] > ] ] >,
+			     SPEC < > ] ] ].
+
 
 sfp-norels := sentence-marker & raise-sem-lex-item.
 
