@@ -28,10 +28,13 @@ head :+
 PRON is used in NPs to show if something is a pronouns?
 PRON is used in ClP to show if something has been explicitly counted
      CTD in the paper
+
+POLAR is used to show polar questions, made by A-not-A or -maa3/me1/aa4 or ding6hai6
 """
 [ PRON bool,
   POSSESSOR poss,
-  INIT bool ].
+  INIT bool,
+  POLAR bool].
 
 png :+ [ PER person ].
 
@@ -316,7 +319,7 @@ tentative  := has-aspect.
 habitual  := has-aspect. 
 experiential  := has-aspect. 
 
-verbal-marker := raise-sem-lex-item & no-icons-lex-item &
+verbal-marker :=  no-icons-lex-item &
 """
 
 This is used by 'comp-marker' to join aspect markers to verbs (suchas  as 咗) and sentence final particles to sentences (such as ).
@@ -335,14 +338,9 @@ It was AUX- in zhong.
                          REL.list < >,
                          QUE.list < > ] ] ].
 
-aspect-marker := verbal-marker &
+aspect-marker := verbal-marker & raise-sem-lex-item & 
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < lex-synsem &
                                       [ MODIFIED notmod ] >].
-
-
-sentence-marker  := verbal-marker &
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS < phr-synsem  &
-				      [ LOCAL.CAT cat-sat ] >].
 
 
 pfv-marker-lex := aspect-marker &
@@ -413,9 +411,46 @@ This is used for 開／慣, to mark perfective aspect.
  
 ;;; Sentence final particle
 
-sfp-q-lex := sentence-marker &
-"""
 
+
+sentence-marker  := verbal-marker &
+  """
+  Sentence final particles apply only to main clauses, 
+  which must be saturated
+  """
+  [ SYNSEM.LOCAL.CAT [ MC #mc, 
+		       VAL.COMPS < phr-synsem  &
+				   [ LOCAL.CAT cat-sat &
+				               [ MC #mc & + ]] >]].
+
+sfp-norels := sentence-marker & raise-sem-lex-item.
+
+sfp-withrel :=   sentence-marker & norm-sem-lex-item &
+  [ SYNSEM.LOCAL [ CONT.RELS.LIST  < [ LBL  #lbl,
+                                       ARG1 #arg1  ] >, 
+		   CAT.VAL.COMPS < [LOCAL.CONT.HOOK [ LTOP #lbl,
+						      INDEX #arg1 ]] > ]]. 
+
+sfp-lex := sfp-withrel  
+"""
+Sentence final particle that shows attitude
+
+<ex> 你 食 嗎 
+""".
+
+
+sfp-p-lex := sfp-withrel &
+"""
+Sentence final particle for polar questions
+
+<ex> 你 食 嗎 
+"""
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ NON-LOCAL.QUE.LIST < >  ] >,
+		     CONT.HOOK.INDEX.SF prop ] ] ].
+
+
+sfp-q-lex := sfp-norels &
+"""
 Sentence final particle for polar questions
 
 <ex> 你 食 嗎 
@@ -425,11 +460,23 @@ Sentence final particle for polar questions
 Forces indefinite reading of interrogative
 FIXME block reapplication
 FIXME block punctuation
-FIXME merge with complementizer :-)
 """
-  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ NON-LOCAL.QUE.LIST < >  ] >,
-		     CONT.HOOK.INDEX.SF ques ] ] ].
+  [ SYNSEM [ LOCAL [ CAT [ HEAD.POLAR +,
+			   VAL.COMPS < [ LOCAL.CAT.HEAD.POLAR -,
+                                         NON-LOCAL.QUE.LIST < >  ] >],
+		     CONT.HOOK.INDEX.SF ques ] ]].
 
+sfp-q-withrel-lex := sfp-withrel &
+"""
+
+Sentence final particle for polar questions where the speaker is surprised
+
+<ex> 你 食 蘋果 咩
+"""
+ [ SYNSEM.LOCAL [ CAT [ HEAD.POLAR +,
+			VAL.COMPS < [  LOCAL.CAT.HEAD.POLAR -,
+				       NON-LOCAL.QUE.LIST < >  ]  >],
+		  CONT.HOOK.INDEX.SF ques ] ].
 
 
 
@@ -438,27 +485,27 @@ FIXME merge with complementizer :-)
 ; We treat question particles as complementizers.
 ; Here is the lexical type for complementizers.
 
-complementizer-lex-item := raise-sem-lex-item & non-local-none-lex-item & basic-icons-lex-item &
-  [ SYNSEM.LOCAL.CAT [ HEAD comp &
-                            [ MOD < > ],
-                       VAL [ SPR < >,
-                             SPEC < >,
-                             SUBJ < >,
-                             COMPS < #comp > ] ],
-    ARG-ST < #comp &
-             [ LOCAL.CAT [ HEAD verb,
-                           VAL [ SUBJ < >,
-                                 COMPS < > ] ] ] > ].
+; complementizer-lex-item := raise-sem-lex-item & non-local-none-lex-item & basic-icons-lex-item &
+;   [ SYNSEM.LOCAL.CAT [ HEAD comp &
+;                             [ MOD < > ],
+;                        VAL [ SPR < >,
+;                              SPEC < >,
+;                              SUBJ < >,
+;                              COMPS < #comp > ] ],
+;     ARG-ST < #comp &
+;              [ LOCAL.CAT [ HEAD verb,
+;                            VAL [ SUBJ < >,
+;                                  COMPS < > ] ] ] > ].
 
-; Subtype for question particles. Constrains SF to ques.
+; ; Subtype for question particles. Constrains SF to ques.
 
-qpart-lex-item := complementizer-lex-item &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
+; qpart-lex-item := complementizer-lex-item &
+;   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
 
-q-particle1-lex := qpart-lex-item &
-  [ SYNSEM.LOCAL.CAT [ MC #mc,
-                       VAL.COMPS.FIRST.LOCAL.CAT [ MC #mc & +,
-                                                   WH.BOOL - ] ] ].
+; q-particle1-lex := qpart-lex-item &
+;   [ SYNSEM.LOCAL.CAT [ MC #mc,
+;                        VAL.COMPS.FIRST.LOCAL.CAT [ MC #mc & +,
+;                                                    WH.BOOL - ] ] ].
 
 ;;; Others
 

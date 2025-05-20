@@ -28,9 +28,8 @@
   [ STEM < "唔" >,
     SYNSEM.LKEYS.KEYREL.PRED "_唔_x_rel" ].
   
-
-嗎 := q-particle1-lex &
-  [ STEM < "嗎" > ].
+; 嗎 := q-particle1-lex &
+;   [ STEM < "嗎" > ].
 
 possessor-NP-adp := possessor-adp-NP-lex &
   [ STEM < "嘅" > ].
@@ -187,10 +186,6 @@ gau2 := common-noun-lex &
 餐廳 := common-noun-lex &
   [ STEM < "餐廳" >,
     SYNSEM.LKEYS.KEYREL.PRED "_餐廳_n_rel" ]. 
-    
-衫 := common-noun-lex &
-  [ STEM < "衫" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_衫_n_rel" ]. 
     
 朋友 := role-noun-lex &
   [ STEM < "朋友" >,
@@ -404,8 +399,30 @@ sei2 := simple_intransitive-verb-lex &
 
 ;;; Sentence Final Particles (sfp)
 
-嗎  := sfp-q-lex & 
+
+
+呀_sfp  := sfp-lex &
+"""
+呀 (aa3): (i) compatible with A-not-A and copula questions, but not sufficient to mark
+a question by itself ; (ii) soften the force of a statement
+"""
+ [ STEM <  "呀" >,
+   SYNSEM.LKEYS.KEYREL.PRED "_呀-aa3_d_rel" ].  
+
+
+
+嗎_sfp  := sfp-q-lex & 
+"""
+Sentence final particle for polar questions
+
+<ex> 你 食 嗎 
+"""
  [ STEM <  "嗎" >].   
+
+咩_sfp  := sfp-q-withrel-lex & 
+ [ STEM <  "咩" >,
+   SYNSEM.LKEYS.KEYREL.PRED "_咩_d_rel" ].  
+
 
 ;;; Determiners
 
