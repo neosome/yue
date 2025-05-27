@@ -22,6 +22,11 @@
   [ STEM < "係" >,
     SYNSEM.LKEYS.KEYREL.PRED "_係_v_rel" ].
 
+有 := strict_transitive-verb-lex &
+  [ STEM < "有" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_有_v_rel" ].
+
+
 ;;; Adverbs
 
 唔 := neg-adv-lex & 
@@ -186,7 +191,11 @@ gau2 := common-noun-lex &
 餐廳 := common-noun-lex &
   [ STEM < "餐廳" >,
     SYNSEM.LKEYS.KEYREL.PRED "_餐廳_n_rel" ]. 
-    
+
+紅綠燈 := common-noun-lex &
+  [ STEM < "紅綠燈" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_紅綠燈_n_rel" ]. 
+   
 朋友 := role-noun-lex &
   [ STEM < "朋友" >,
     SYNSEM.LKEYS.KEYREL.PRED "_朋友_n_rel" ].  
