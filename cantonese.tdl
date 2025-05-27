@@ -115,7 +115,7 @@ kin := kin-or-role.
 role := kin-or-role. 
 
 
-
+rslt := predsort.
 
 
 ;;;;;;;;;;;;;;;;;;;
@@ -237,7 +237,8 @@ cl-head-phrase := cl-head-phrase-super & head-final &
 ;;; Verbs
 
 verb-lex := basic-verb-lex & non-mod-lex-item & basic-non-wh-word-lex &
-  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj > ],
+  [ SYNSEM.LOCAL [ CAT.VAL [ SPR < >,
+			     SUBJ < #subj > ],
                    CONT.HOOK.XARG #xarg ],
     ARG-ST.FIRST #subj &
                  [ LOCAL [ CAT cat-sat &
@@ -518,6 +519,44 @@ Sentence final particle for polar questions where the speaker is surprised
 			VAL.COMPS < [  LOCAL.CAT.HEAD.POLAR -,
 				       NON-LOCAL.QUE.LIST < >  ]  >],
 		  CONT.HOOK.INDEX.SF ques ] ].
+
+
+anota-lex-rule :=  same-modified-lex-rule &
+		   same-light-lex-rule &
+		   same-ctxt-lex-rule &
+		   same-cont-lex-rule &
+		   same-agr-lex-rule & 
+                   infl-lex-rule & no-rels-hcons-lex-rule &
+"""
+Rule for a-not-a questions, A-not-A patterns captured in vanilla.rpp
+ based on Zhong's rule by ZZF
+"""
+ [ SYNSEM [ LOCAL [ CAT [ MC luk,
+			  HEAD #head & [POLAR +], 
+			  VAL #val, 
+			  MKG #mkg, 
+			  HC-LIGHT #light, 
+			  POSTHEAD #posthead ],
+		    CONT.HOOK.INDEX [ E.ASPECT no-aspect,
+				      SF ques] ],
+            NON-LOCAL [ QUE #que,
+                        SLASH #slash,
+                        REL #rel ] ],
+   DTR word-or-lexrule & [ SYNSEM [ LOCAL [ CAT [ HEAD #head & 
+                                                     [ 
+                                                       MOD < > ], 
+					        VAL #val, 
+					        MKG #mkg, 
+				                HC-LIGHT #light, 
+					        POSTHEAD #posthead ],
+                                          CONT.HOOK.INDEX #index ],
+                                  NON-LOCAL [ QUE #que,
+					      SLASH #slash,
+                                              REL #rel ] ] ]
+].
+
+
+
 
 
 
@@ -1013,5 +1052,120 @@ pred-adj-spr-lex := pred-adj-optspr-lex &
 
   
 				   
+;;; Resultatives
 
 
+rslt-compound-phrase := head-initial &
+"""
+This rule is the mother of many specific types of resultative phrases, where two predicates are joined in a serial construction, with different semantic outputs depending on the subcategorization of each of the verbs. 
+
+This top rule lays out some restrictions:
+- both phrases need to be non aspected.
+- both phrases need to be [LIGHT +], essentially requesting things without filled comps (???)
+- both phrases [BARE na-or--], which is a feature not used by verbs or adjectives and that is being used to block resultative constructions. As such, any verb that is marked as [BARE +] will be blocked from participating in these constructions; This is an interesting choice (just to save on the number of features). This is most likely not the best way to do this in the future, but for now it's ok. 
+
+[FIXME] Overall most of these structures produce a lot of gibberish. The semantics are also broken in a lot of places. This is also how complements of results (吃 完) are being handled, but there is no restrictions as to what can serve as a complement.
+
+Blocks aspect on both daughters with SPEC < [] >.
+
+"""
+  [ SYNSEM [ LOCAL.CAT [ HEAD #head,
+			 VAL [ SPR #spr ],
+			 MC luk, 
+			 MKG #mkg,
+			 HC-LIGHT #hclight, 
+			 POSTHEAD #posthead,
+			 ;NONSUBJ #nonsubj
+			 ],
+	     NON-LOCAL #nonloc ],
+    HEAD-DTR.SYNSEM lex-synsem &
+                [ ;BOUND na-or--,
+                  LIGHT +,
+                  ;BARE na-or--,
+                  ;ASPECTED na-or--,
+		  LOCAL [ CAT [ HEAD #head & verb,
+		  ;& [
+		  ;CHAR.LENGTH one,
+		;				     STATIVE na-or--,
+                ;                                     EXISTV na-or--,
+                ;                                     COP -,
+		;				     AUX -,
+		;,				     EMPTY -],				
+				VAL [ SPR #spr,
+				      SPEC < [] >  ],
+				MC na-or--,
+				MKG #mkg,
+				HC-LIGHT #hclight, 
+				POSTHEAD #posthead,
+				;NONSUBJ #nonsubj
+				],
+			  CONT [ HOOK [ LTOP #ltop,
+					INDEX #arg1 ] ] ],
+                  NON-LOCAL #nonloc ],
+    NON-HEAD-DTR.SYNSEM lex-synsem &
+	        [ LIGHT +,
+		 ; BOUND na-or--,
+                 ; ASPECTED na-or--,
+		  LOCAL [ CAT [ HEAD +vj,
+				VAL.SPEC < [] >,
+				MC na-or-- ],
+			  CONT.HOOK.INDEX #arg2 ] ],
+    C-CONT [ HOOK [ LTOP #ltop,
+		    INDEX #arg1 ],
+	     RELS.LIST < [ LBL #ltop,
+		       PRED rslt,
+		       ARG1 #arg1, 
+		       ARG2 #arg2 ] >,
+             HCONS <! !>,
+	     ICONS <! !> ] ].
+	     
+rslt-1_1-phrase := rslt-compound-phrase & 
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
+
+rslt-12_1-phrase := rslt-compound-phrase & 
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < [] >,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
+
+subject-oriented-phrase := head-initial & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj >,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ].
+
+object-oriented-phrase := head-initial & 
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comp >,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #comp > ].
+
+
+rslt-1_1-sbj-phrase := rslt-1_1-phrase & subject-oriented-phrase &
+"""
+This is a subject-oriented construction, where the subject of the first predicate is shared with the second predicate. As the name indicates, both predicates only take a single argument (e.g. intransitive verbs and adjectives); 
+
+<ex> 张三 跑 累 了 。
+('张三 ran', and '张三 became tired')
+
+Referred to as Type 10 in (lee:13).
+"""
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
+                                    SPR < > ],
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ].
+
+rslt-12_1-sbj-phrase := rslt-12_1-phrase & subject-oriented-phrase &
+"""Type 7 (lee:13) (Zhangsan chased Lisi and Zhangsan got tired.)
+<ex> 张三 追 累 了 李四
+"""
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comp >,
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
+				    COMPS < #comp > ],
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ]. 
+
+
+rslt-12_1-obj-phrase := rslt-12_1-phrase & object-oriented-phrase &
+"""
+Type 3 (lee:13) (Zhangsan chased Lisi to the extent of making Lisi tired.)
+<ex> 张三 追 累 了 李四 
+"""
+  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
+			   COMPS < #comp > ],
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST #subj,
+				    COMPS < #comp >] ].

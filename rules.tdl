@@ -40,3 +40,23 @@ vp1-bottom-coord := vp1-bottom-coord-rule.
 in-situ-ques := insitu-int-cl.
 
 mod-head-scop := adj-head-scop-phrase.
+
+;============================================================================
+; RESULTATIVE CONSTRUCTIONS
+;============================================================================
+
+rslt-1_1-sbj := rslt-1_1-sbj-phrase
+"""
+<ex> 明恩 跌 死 咗
+<nex> 明恩 跌 咗 死 
+""".
+
+rslt-12_1-sbj := rslt-12_1-sbj-phrase
+"""
+<ex> 明恩 吠 死 咗 巧華
+""".
+
+rslt-12_1-obj := rslt-12_1-obj-phrase
+"""
+<ex> 明恩 吠 死 咗 巧華
+""".
