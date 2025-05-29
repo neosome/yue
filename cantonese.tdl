@@ -1097,7 +1097,28 @@ Blocks aspect on both daughters with SPEC < [] >.
 
 Introduces a rslt relation R is the result of V.  This must allow scope, as R can be negated.
 
+Joanna and Dan observe:
+Since we don't want resultative "die" to affect the subject in an example like 
+A V-die B, we may have to mark intransitive change-of-state verbs with a feature
+that determines subject vs. object. 
+Note that when the object is a bare-noun, it can only have a generic reading in
+Cantonese, and it appears that generics are unavailable for being affected by 
+the resultative.
+For our best example of a resultative that can affect either, "tired", if the
+object is specific, only the object-reading is available, while if the object 
+is generic, normally only the subject-reading is available (but see below). 
+Since the generic/specific constrast is always explicit in Cantonese, we don't 
+easily find a resultative example that is ambiguous.
 
+Proposal: Make the object-oriented resultative rule require that the object is
+not bare (i.e., it must be specific).  Make the subject-oriented ressultative 
+rule require that the object is bare; for example with "tired" as in 
+"X rode tired (the) horse".  Also assume that most resultative preds are either 
+strictly subject oriented ("full") or object oriented ("die").  For these latter
+two, we seem to be able to have generics affected, maybe only in subordinate 
+clauses: 
+"When lions eat full gazelles, they don't chase tourists."
+See also "When lions eat die gazelles, they give them to their cubs."
 
 """
   [ SYNSEM [ LOCAL.CAT [ HEAD #head,
