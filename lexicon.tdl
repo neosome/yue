@@ -180,11 +180,15 @@ gau2 := common-noun-lex &
   [ STEM < "蘋果" >,
     SYNSEM.LKEYS.KEYREL.PRED "_蘋果_n_rel" ]. 
 
+麵  := common-noun-lex &
+  [ STEM < "麵" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_麵_n_rel" ]. 
+
 西瓜 := common-noun-lex &
   [ STEM < "西瓜" >,
     SYNSEM.LKEYS.KEYREL.PRED "_西瓜_n_rel" ]. 
 
- 手 := common-noun-lex &
+手 := common-noun-lex &
   [ STEM < "手" >,
     SYNSEM.LKEYS.KEYREL.PRED "_手_n_rel" ].
     
@@ -399,11 +403,22 @@ sei2 := simple_intransitive-verb-lex &
 
 ;;; Inner aspect markers
 
-;親  := hab-marker-lex & 
-;[ STEM < "親" >].
+飽  := inner-aspect-ind-lex & 
+"""
+individual oriented
+<ex>我 食 飽 麵
+"""
+  [ STEM < "飽" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_飽_v_rel"].
   
-;倒  := hab-marker-lex & 
-;[ STEM <  "倒" >].   
+掂  := inner-aspect-event-lex &
+"""
+event oriented
+<ex>我 食 掂 麵
+FIXME better example
+"""
+  [ STEM <  "掂" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_掂_v_rel"].   
 
 
 ;;; Sentence Final Particles (sfp)

@@ -60,3 +60,9 @@ rslt-12_1-obj := rslt-12_1-obj-phrase
 """
 <ex> 明恩 吠 死 咗 巧華
 """.
+
+rslt-event := rslt-event-phrase
+"""
+<ex>我 食 掂 麵
+FIXME better example
+""".

@@ -168,12 +168,20 @@ s-bottom-label := label &
                             COORD + ],
              LABEL-NAME "S-B"].
 
-s-label := label &
-           [ SYNSEM.LOCAL [ CAT [ HEAD +vj,
-                                  VAL [ COMPS < >,
-                                        SUBJ < > ] ],
-                            COORD-STRAT "" ],
-             LABEL-NAME "S"].
+ asp-inner-label := label &
+  [ SYNSEM lex-synsem & 
+	   [ LOCAL [ CAT [ HEAD +vj,
+			   VAL [ COMPS < >,
+				 SUBJ < > ] ],
+		     COORD-STRAT "" ] ],
+    LABEL-NAME "ASP"].
+
+s-label := label & 
+ [ SYNSEM [LOCAL [ CAT [ HEAD +vj,
+			  VAL [ COMPS < >,
+				SUBJ < > ] ],
+		    COORD-STRAT "" ] ],
+   LABEL-NAME "S"] .
 
 s-top-label := label &
 	   [ SYNSEM.LOCAL.CAT [ HEAD verb,

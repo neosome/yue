@@ -386,6 +386,7 @@ pfv-marker-lex := aspect-marker &
 This is used for 咗, to mark perfective aspect.
 
 <ex> 我 食 咗 個 蘋果 
+<ex> 我 食 飽 咗 蘋果 
 <ex> 我 食 住 先 
 
 
@@ -455,14 +456,14 @@ sentence-marker  := verbal-marker &
   """
   Sentence final particles apply only to main clauses, 
   which must be saturated
+<ex> 你 食 嚟
 <nex> 你 食 嚟 嚟
+
   """
   [ SYNSEM.LOCAL.CAT [ MC #mc, 
-		       VAL [ COMPS < phr-synsem  &
-				     [ LOCAL.CAT cat-sat &
-						 [ MC #mc & +,
-						   VAL.SPEC < [ ] > ] ] >,
-			     SPEC < > ] ] ].
+		       VAL.COMPS < phr-synsem  &
+				   [ LOCAL.CAT cat-sat &
+					       [ MC #mc & + ] ] > ]].
 
 
 sfp-norels := sentence-marker & raise-sem-lex-item.
@@ -478,6 +479,7 @@ sfp-lex := sfp-withrel
 Sentence final particle that shows attitude
 
 <ex> 你 食 嗎 
+<ex> 你 食 飽 嗎
 """.
 
 
@@ -1039,8 +1041,6 @@ ZZF FB LMC 2016-2-24 SPR OPT changed from - to bool to allow adj predicate witho
 	     LKEYS.KEYREL.ARG1 #index ] ].
 
 
-;pred-adj-nospr-lex := pred-adj-lex &
-;  [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < > ] ] ] ] ].
 		      
 pred-adj-optspr-lex := pred-adj-lex &
   [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < [ LOCAL [ CAT [ HEAD adv,
@@ -1050,8 +1050,36 @@ pred-adj-optspr-lex := pred-adj-lex &
 pred-adj-spr-lex := pred-adj-optspr-lex &
   [ SYNSEM [ LOCAL [ CAT [ VAL [ SPR < [ OPT - ] > ] ] ] ] ].
 
+inner-aspect-lex := basic-verb-lex &
+"""
+Inner aspect particles
+<ex>我 食 飽 麵
+<ex>我 食 飽 咗 麵
+<ex>我 食 完 麵
+<ex>我 食 完 咗 麵
+
+lex-synsem stops them from being sentences, even though they are SUBJ < >.
+they can't combine with anything, so they cannot become phrases!
+
+Aspect is stamped on the mother by the rslt-compound-phrase
+"""
+  [ SYNSEM [ LOCAL [CAT [VAL [ SUBJ < >,
+			       SPR < >,
+			       COMPS < >,
+			       SPEC < [LOCAL.CONT.HOOK.INDEX.E.ASPECT
+			   perfective-or-experential ] > ],
+			 HEAD.MOD < > ] ,
+		    CONT.HOOK.XARG  #xarg ],
+	     LKEYS.KEYREL [ARG1 #xarg ] ] ].
   
-				   
+
+inner-aspect-ind-lex := inner-aspect-lex &
+ [ SYNSEM.LOCAL.CONT.HOOK.XARG ref-ind].
+
+inner-aspect-event-lex := inner-aspect-lex &
+ [ SYNSEM.LOCAL.CONT.HOOK.XARG event].
+
+
 ;;; Resultatives
 
 
@@ -1062,15 +1090,21 @@ This rule is the mother of many specific types of resultative phrases, where two
 This top rule lays out some restrictions:
 - both phrases need to be non aspected.
 - both phrases need to be [LIGHT +], essentially requesting things without filled comps (???)
-- both phrases [BARE na-or--], which is a feature not used by verbs or adjectives and that is being used to block resultative constructions. As such, any verb that is marked as [BARE +] will be blocked from participating in these constructions; This is an interesting choice (just to save on the number of features). This is most likely not the best way to do this in the future, but for now it's ok. 
 
 [FIXME] Overall most of these structures produce a lot of gibberish. The semantics are also broken in a lot of places. This is also how complements of results (吃 完) are being handled, but there is no restrictions as to what can serve as a complement.
 
 Blocks aspect on both daughters with SPEC < [] >.
 
+Introduces a rslt relation R is the result of V.  This must allow scope, as R can be negated.
+
+
+
 """
   [ SYNSEM [ LOCAL.CAT [ HEAD #head,
-			 VAL [ SPR #spr ],
+			 VAL [ SUBJ #subj,
+			       SPR #spr,
+			       SPEC < >,
+			       COMPS #comps ],
 			 MC luk, 
 			 MKG #mkg,
 			 HC-LIGHT #hclight, 
@@ -1079,20 +1113,12 @@ Blocks aspect on both daughters with SPEC < [] >.
 			 ],
 	     NON-LOCAL #nonloc ],
     HEAD-DTR.SYNSEM lex-synsem &
-                [ ;BOUND na-or--,
-                  LIGHT +,
-                  ;BARE na-or--,
-                  ;ASPECTED na-or--,
+                [ LIGHT +,
 		  LOCAL [ CAT [ HEAD #head & verb,
-		  ;& [
-		  ;CHAR.LENGTH one,
-		;				     STATIVE na-or--,
-                ;                                     EXISTV na-or--,
-                ;                                     COP -,
-		;				     AUX -,
-		;,				     EMPTY -],				
-				VAL [ SPR #spr,
-				      SPEC < [] >  ],
+				VAL [ SUBJ #subj & < [] >,
+				      SPR #spr,
+				      SPEC < [] >,
+				      COMPS #comps ],
 				MC na-or--,
 				MKG #mkg,
 				HC-LIGHT #hclight, 
@@ -1104,36 +1130,46 @@ Blocks aspect on both daughters with SPEC < [] >.
                   NON-LOCAL #nonloc ],
     NON-HEAD-DTR.SYNSEM lex-synsem &
 	        [ LIGHT +,
-		 ; BOUND na-or--,
-                 ; ASPECTED na-or--,
 		  LOCAL [ CAT [ HEAD +vj,
-				VAL.SPEC < [] >,
+				VAL.SPEC < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT #asp] >,
 				MC na-or-- ],
-			  CONT.HOOK.INDEX #arg2 ] ],
+			  CONT.HOOK.LTOP #larg ] ],
     C-CONT [ HOOK [ LTOP #ltop,
-		    INDEX #arg1 ],
+		    INDEX #arg1 & [ E.ASPECT #asp] ],
 	     RELS.LIST < [ LBL #ltop,
 		       PRED rslt,
 		       ARG1 #arg1, 
-		       ARG2 #arg2 ] >,
-             HCONS <! !>,
+		       ARG2 #harg ] >,
+	     HCONS.LIST < [ HARG #harg,
+			    LARG #larg ] >, 
 	     ICONS <! !> ] ].
 	     
 rslt-1_1-phrase := rslt-compound-phrase & 
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 
-rslt-12_1-phrase := rslt-compound-phrase & 
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < [] >,
+rslt-12_1-phrase := rslt-compound-phrase &
+"""
+making the COMPS expressed-synsem would block unexpressed objects, but they are ok
+[ did you wash the clothes ]
+<ex> I wash clean 
+... means the clothes
+
+"""
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < [ ] >,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 
 subject-oriented-phrase := head-initial & 
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj >,
-    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ].
+  [ SYNSEM.LOCAL.CONT.HOOK.XARG #subj ,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #subj ].
 
 object-oriented-phrase := head-initial & 
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comp >,
-    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #comp > ].
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CONT.HOOK.INDEX #comp ] >,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #comp  ].
+
+event-oriented-phrase := head-initial & 
+ [ SYNSEM.LOCAL.CONT.HOOK.INDEX #event,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #event  ].
 
 
 rslt-1_1-sbj-phrase := rslt-1_1-phrase & subject-oriented-phrase &
@@ -1146,18 +1182,15 @@ This is a subject-oriented construction, where the subject of the first predicat
 Referred to as Type 10 in (lee:13).
 """
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
-    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
-                                    SPR < > ],
-    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ].
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SPR < > ] ].
 
 rslt-12_1-sbj-phrase := rslt-12_1-phrase & subject-oriented-phrase &
 """Type 7 (lee:13) (Zhangsan chased Lisi and Zhangsan got tired.)
 <ex> 张三 追 累 了 李四
 """
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comp >,
-    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
-				    COMPS < #comp > ],
-    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #subj > ]. 
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS  < [ ] >,
+    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG #subj,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG #subj ]. 
 
 
 rslt-12_1-obj-phrase := rslt-12_1-phrase & object-oriented-phrase &
@@ -1165,7 +1198,9 @@ rslt-12_1-obj-phrase := rslt-12_1-phrase & object-oriented-phrase &
 Type 3 (lee:13) (Zhangsan chased Lisi to the extent of making Lisi tired.)
 <ex> 张三 追 累 了 李四 
 """
-  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ < #subj >,
-			   COMPS < #comp > ],
-    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST #subj,
-				    COMPS < #comp >] ].
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS  < [ ] > ].
+
+rslt-event-phrase := rslt-compound-phrase & event-oriented-phrase
+"""
+<ex>我 食 掂 麵 FIXME better example
+""".
