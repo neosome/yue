@@ -1189,8 +1189,8 @@ object-oriented-phrase := head-initial &
     NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #comp  ].
 
 event-oriented-phrase := head-initial & 
- [ SYNSEM.LOCAL.CONT.HOOK.INDEX #event,
-    NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #event  ].
+ [ HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX #event,
+   NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.XARG  #event  ].
 
 
 rslt-1_1-sbj-phrase := rslt-1_1-phrase & subject-oriented-phrase &
