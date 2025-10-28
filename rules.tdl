@@ -9,7 +9,15 @@ subj-head := subj-head-phrase.
 
 comp-head := comp-head-phrase.
 
-head-marker := head-marker-phrase.
+head-marker := head-marker-phrase
+"""
+Head-marker phrase.
+
+This is used for sentence final particles and outer aspect particles.
+
+<ex> 你 食 嗎 
+<ex> 我 食 過 蘋果 
+""".
 
 adj-head-int := adj-head-int-phrase.
 

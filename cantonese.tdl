@@ -285,10 +285,9 @@ punct := marker-or-punct.
 
 
 ;;
-basic-head-marker-phrase := binary-nonloc-phrase &
+basic-head-marker-phrase := binary-headed-phrase & binary-nonloc-phrase &
 """
-DPF 2025-05-20 - Removed binary headed-phrase since we now want most but not
-all head features to come from the left daughter. Similarly, most but not all
+Most but not all
 valence features come from the left daughter; the SPEC feature on the mother
 will be determined by the marker, so we enable sentence-markers to constrain
 their complement to be SPEC non-empty (notionally compatible with combining
@@ -296,8 +295,8 @@ with a marker), but stamp SPEC empty on the mother to block iteration of
 marker attachments.  All while allowing aspect markers to simply propagate
 the SPEC value of their complement.
 
-right dtr = marker
-left dtr = non-marker
+first dtr = marker
+second dtr = non-marker
 """
   [SYNSEM.LOCAL [ CAT.VAL [ SUBJ #subj,
 			    SPR #spr,
