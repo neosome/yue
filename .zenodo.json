@@ -1,0 +1,55 @@
+{
+  "upload_type": "software",
+  "title": "yue: Cantonese HPSG Grammar",
+  "creators": [
+    {
+      "name": "Joanna Ut-Seong Sio",
+      "affiliation": "Palacký University",
+      "orcid": "0000-0002-0949-5957"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Francis Bond",
+      "affiliation": "Palacký University",
+      "orcid": "0000-0003-4973-8068"
+    },
+   {
+      "name": "Sanghoun Song",
+      "affiliation": "Korea University",
+      "orcid": "0000-0002-4234-232X"
+    },
+   {
+      "name": "Daniel Flickiner",
+      "affiliation": "Stanford University",
+      "orcid": "0000-0001-7959-999X"
+    }
+      
+  ],
+  "description": "A computational grammar of Cantonese developed under the HPSG (Head-Driven Phrase Structure Grammar) framework with  the DELPH-IN infrastructure.  Repository: https://github.com/neosome/yue",
+  "access_right": "open",
+  "license": "MIT",
+  "language": "yue",
+  "keywords": [
+    "Cantonese",
+    "HPSG",
+    "computational linguistics",
+    "grammar",
+      "head-driven phrase structure grammar",
+      "DELPH-IN"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.21248/hpsg.2015.11",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.21248/hpsg.2024.4",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+  ]
+}
