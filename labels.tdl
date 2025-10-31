@@ -16,6 +16,20 @@
 ;;; the more specific one must appear first in this list, or
 ;;; it will never get used.
 
+asp-marker-label := label &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD marker,
+			   VAL.COMPS.FIRST lex-synsem ],
+		     COORD-STRAT "" ], 
+	     LIGHT +  ],
+    LABEL-NAME "ASP" ].
+    
+sfp-marker-label := label &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD marker,
+			   VAL.COMPS.FIRST phr-synsem ],
+		     COORD-STRAT "" ], 
+	     LIGHT +  ],
+    LABEL-NAME "SFP" ].
+    
 n-mid-label := label &
             [ SYNSEM.LOCAL [ CAT [ HEAD noun,
                                    VAL.SPR < [ ] > ],
@@ -154,12 +168,20 @@ s-bottom-label := label &
                             COORD + ],
              LABEL-NAME "S-B"].
 
-s-label := label &
-           [ SYNSEM.LOCAL [ CAT [ HEAD +vj,
-                                  VAL [ COMPS < >,
-                                        SUBJ < > ] ],
-                            COORD-STRAT "" ],
-             LABEL-NAME "S"].
+ asp-inner-label := label &
+  [ SYNSEM lex-synsem & 
+	   [ LOCAL [ CAT [ HEAD +vj,
+			   VAL [ COMPS < >,
+				 SUBJ < > ] ],
+		     COORD-STRAT "" ] ],
+    LABEL-NAME "ASP"].
+
+s-label := label & 
+ [ SYNSEM [LOCAL [ CAT [ HEAD +vj,
+			  VAL [ COMPS < >,
+				SUBJ < > ] ],
+		    COORD-STRAT "" ] ],
+   LABEL-NAME "S"] .
 
 s-top-label := label &
 	   [ SYNSEM.LOCAL.CAT [ HEAD verb,

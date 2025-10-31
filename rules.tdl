@@ -9,6 +9,16 @@ subj-head := subj-head-phrase.
 
 comp-head := comp-head-phrase.
 
+head-marker := head-marker-phrase
+"""
+Head-marker phrase.
+
+This is used for sentence final particles and outer aspect particles.
+
+<ex> 你 食 嗎 
+<ex> 我 食 過 蘋果 
+""".
+
 adj-head-int := adj-head-int-phrase.
 
 poss-2 := poss-phrase-2.
@@ -38,3 +48,29 @@ vp1-bottom-coord := vp1-bottom-coord-rule.
 in-situ-ques := insitu-int-cl.
 
 mod-head-scop := adj-head-scop-phrase.
+
+;============================================================================
+; RESULTATIVE CONSTRUCTIONS
+;============================================================================
+
+rslt-1_1-sbj := rslt-1_1-sbj-phrase
+"""
+<ex> 明恩 跌 死 咗
+<nex> 明恩 跌 咗 死 
+""".
+
+rslt-12_1-sbj := rslt-12_1-sbj-phrase
+"""
+<ex> 明恩 吠 死 咗 巧華
+""".
+
+rslt-12_1-obj := rslt-12_1-obj-phrase
+"""
+<ex> 明恩 吠 死 咗 巧華
+""".
+
+rslt-event := rslt-event-phrase
+"""
+<ex>我 食 掂 麵
+FIXME better example
+""".

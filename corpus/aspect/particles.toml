@@ -1,0 +1,125 @@
+[[particles]]
+particle = "緊"
+pronunciation = "gan2"
+group = "inner"
+explanation = "Indicates an ongoing action (progressive aspect)."
+examples = [
+    { utterance = "佢食緊飯。", jyutping = "keoi5 sik6 gan2 faan6", gloss = "He is eating." }
+]
+
+[[particles]]
+particle = "住"
+pronunciation = "zyu6"
+group = "inner"
+explanation = "Indicates a continuous state (durative aspect)."
+examples = [
+    { utterance = "門開住。", jyutping = "mun4 hoi1 zyu6", gloss = "The door is open." }
+]
+
+[[particles]]
+particle = "晒"
+pronunciation = "saai3"
+group = "inner"
+explanation = "Indicates exhaustive completion of all instances."
+examples = [
+    { utterance = "佢食晒啲嘢。", jyutping = "keoi5 sik6 saai3 di1 je5", gloss = "He ate everything." }
+]
+
+[[particles]]
+particle = "完"
+pronunciation = "jyun4"
+group = "resultative"
+explanation = "Indicates completion of an action."
+examples = [
+    { utterance = "佢睇完書。", jyutping = "keoi5 tai2 jyun4 syu1", gloss = "He finished reading the book." }
+]
+
+[[particles]]
+particle = "哂"
+pronunciation = "saai3"
+group = "resultative"
+explanation = "Indicates thoroughness or complete consumption."
+examples = [
+    { utterance = "佢飲哂啲水。", jyutping = "keoi5 jam2 saai3 di1 seoi2", gloss = "He drank all the water." }
+]
+
+[[particles]]
+particle = "埋"
+pronunciation = "maai4"
+group = "resultative"
+explanation = "Indicates inclusion or bringing something to a close."
+examples = [
+    { utterance = "執埋啲嘢啦。", jyutping = "zap1 maai4 di1 je5 laa1", gloss = "Pack up (everything)." }
+]
+
+[[particles]]
+particle = "低"
+pronunciation = "dai1"
+group = "resultative"
+explanation = "Indicates a downward movement or lower state."
+examples = [
+    { utterance = "佢跌低咗。", jyutping = "keoi5 dit3 dai1 zo2", gloss = "He fell down." }
+]
+
+[[particles]]
+particle = "起"
+pronunciation = "hei2"
+group = "resultative"
+explanation = "Indicates an upward movement or completion."
+examples = [
+    { utterance = "佢執起張紙。", jyutping = "keoi5 zap1 hei2 zoeng1 zi2", gloss = "He picked up the paper." }
+]
+
+[[particles]]
+particle = "翻"
+pronunciation = "faan1"
+group = "resultative"
+explanation = "Indicates repetition or restoration of a prior state."
+examples = [
+    { utterance = "佢講翻一次。", jyutping = "keoi5 gong2 faan1 jat1 ci3", gloss = "He repeated it once." }
+]
+
+[[particles]]
+particle = "壞"
+pronunciation = "waai6"
+group = "resultative"
+explanation = "Indicates that something is broken or damaged."
+examples = [
+    { utterance = "個電話整壞咗。", jyutping = "go3 din6 waa2 zing2 waai6 zo2", gloss = "The phone is broken." }
+]
+
+[[particles]]
+particle = "咗"
+pronunciation = "zo2"
+group = "outer"
+explanation = "Indicates a completed action (perfective aspect)."
+examples = [
+    { utterance = "佢食咗飯。", jyutping = "keoi5 sik6 zo2 faan6", gloss = "He has eaten." }
+]
+
+[[particles]]
+particle = "過"
+pronunciation = "gwo3"
+group = "outer"
+explanation = "Indicates that an action has happened before (experiential aspect)."
+examples = [
+    { utterance = "佢去過日本。", jyutping = "keoi5 heoi3 gwo3 jat6 bun2", gloss = "He has been to Japan." }
+]
+
+[[particles]]
+particle = "埋"
+pronunciation = "maai4"
+group = "outer"
+explanation = "Indicates finality or bringing an action to a close."
+examples = [
+    { utterance = "行埋嚟。", jyutping = "hang4 maai4 lai4", gloss = "Come closer." }
+]
+
+[[particles]]
+particle = "返"
+pronunciation = "faan1"
+group = "outer"
+explanation = "Indicates returning to a prior state."
+examples = [
+    { utterance = "攞返啲嘢嚟。", jyutping = "lo2 faan1 di1 je5 lai4", gloss = "Take (back) the things here." }
+]
