@@ -403,22 +403,30 @@ sei2 := simple_intransitive-verb-lex &
 
 ;;; Inner aspect markers
 
-飽  := inner-aspect-ind-lex & 
+飽_iai  := inner-aspect-ind-lex & 
 """
 individual oriented
 <ex>我 食 飽 麵
 """
   [ STEM < "飽" >,
     SYNSEM.LKEYS.KEYREL.PRED "_飽_v_rel"].
-  
-掂  := inner-aspect-event-lex &
+    
+掂_iae  := inner-aspect-event-lex &
 """
 event oriented
-<ex>我 食 掂 麵
+<ex>我 食 掂 蘋果
 FIXME better example
 """
   [ STEM <  "掂" >,
     SYNSEM.LKEYS.KEYREL.PRED "_掂_v_rel"].   
+完_iae  := inner-aspect-event-lex &
+"""
+event oriented
+<ex>我 食 完 蘋果
+FIXME better example
+"""
+  [ STEM <  "完" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_完_v_asp_rel"].   
 
 
 ;;; Sentence Final Particles (sfp)

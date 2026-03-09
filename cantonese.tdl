@@ -1128,8 +1128,7 @@ See also "When lions eat die gazelles, they give them to their cubs."
 			 MC luk, 
 			 MKG #mkg,
 			 HC-LIGHT #hclight, 
-			 POSTHEAD #posthead,
-			 ;NONSUBJ #nonsubj
+			 POSTHEAD #posthead
 			 ],
 	     NON-LOCAL #nonloc ],
     HEAD-DTR.SYNSEM lex-synsem &
@@ -1142,8 +1141,7 @@ See also "When lions eat die gazelles, they give them to their cubs."
 				MC na-or--,
 				MKG #mkg,
 				HC-LIGHT #hclight, 
-				POSTHEAD #posthead,
-				;NONSUBJ #nonsubj
+				POSTHEAD #posthead
 				],
 			  CONT [ HOOK [ LTOP #ltop,
 					INDEX #arg1 ] ] ],
