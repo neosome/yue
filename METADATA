@@ -103,4 +103,9 @@ ISO_CODE="yue"
 LKB_SCRIPT_FILE=""
 ACE_CONFIG_FILE="ace/config.tdl"
 
-EXAMPLES=["我 食 咗 個 蘋果"]
+
+EXAMPLES = ["佢 跑",
+	    "我 食 蘋果",
+	    "你 係 警察 嗎",
+	    "我 有 一 隻 狗",
+	    "佢 食 咗 個 蘋果" ]
